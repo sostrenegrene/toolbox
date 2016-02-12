@@ -12,7 +12,7 @@ require_once 'system/includes/Modules.class.php';
 
 $getset = new GetSet();
 //$db 	= new MySQL(DB_HOST, DB_USER, DB_PASS, DB_DB);
-$db 	= new MSSQL(DB_HOST, DB_USER, DB_PASS, DB_DB);
+$db 	= new MS_SQL(DB_HOST, DB_USER, DB_PASS, DB_DB);
 
 //Save "load" id to session
 $getset->setSession("load",$getset->header("load"));
