@@ -2,10 +2,9 @@
 session_start();
 
 require_once 'system/config/config.php';
-
 require_once 'system/sys_lib/getset.php';
-//require_once 'system/sys_lib/mysql.php';
-require_once 'system/sys_lib/mssql.php';
+require_once 'system/sys_lib/mysql.php';
+require_once 'system/sys_lib/mssql.class.php';
 
 require_once 'system/includes/Menus.class.php';
 require_once 'system/includes/Modules.class.php';
@@ -21,7 +20,7 @@ $getset->setSession("load",$getset->header("load"));
 $sys_menu = new Menus($db,0);
 $sys_mods = new Modules($db,$getset->header("load"));
 
-//print_r($mods->modules());
+//print_r($sys_menu->menu());
 ?>
 
 
@@ -32,4 +31,6 @@ $sys_mods = new Modules($db,$getset->header("load"));
 <?php require_once 'system/layout/body.php'; ?>
 
 <!-- INCLUDE FOOT -->
-<?php require_once 'system/layout/foot.php'; ?>
+<?php require_once 'system/layout/foot.php'; 
+print $db->error();
+?>

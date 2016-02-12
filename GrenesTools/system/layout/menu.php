@@ -1,4 +1,4 @@
-<?php 
+<?php //Debug
 //print_r($menu->menu());
 //print_r($menu->submenu(1));
 ?>

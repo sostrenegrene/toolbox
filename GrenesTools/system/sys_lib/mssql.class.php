@@ -20,8 +20,9 @@
  	
 		if (!$this->conn) { 
 			print "Failed to connect";				
+			print $this->error();
 		}
-		else { print "Connected to mssql"; }
+		
  	}//END function
  	 	
  	function query($query) {

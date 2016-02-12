@@ -16,6 +16,7 @@ class Menus {
 	private function fetch_Menus() {
 		$query = "SELECT * FROM " . DB_TABLE_MENUS . " WHERE sub_id = '0' AND level >= '".$this->level."'";
 		$this->db->query($query);
+		
 		return $this->db->get_rows();
 	}
 	
