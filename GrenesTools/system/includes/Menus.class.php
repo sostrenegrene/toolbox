@@ -26,6 +26,15 @@ class Menus {
 		return $this->db->get_rows();
 	}
 	
+	function menuIdByName($name){
+		$query = "SELECT id FROM " . DB_TABLE_MENUS . " WHERE name = '".$name."'";
+		$this->db->query($query);
+		$res = $this->db->get_rows();
+		if ($res != null) { $res = $res[0]['id']; }
+		
+		return $id;
+	}
+	
 	function menu() {
 		return $this->menus;
 	}

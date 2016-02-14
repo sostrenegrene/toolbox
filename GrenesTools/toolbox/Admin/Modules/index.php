@@ -26,6 +26,6 @@ switch($getset->header(FORM_ACTION)) {
 }
 
 //Include the varius option forms
-require_once __DIR__.'/create.php';
-require_once __DIR__.'/delete.php';
+require_once 'create.php';
+require_once 'delete.php';
 ?>

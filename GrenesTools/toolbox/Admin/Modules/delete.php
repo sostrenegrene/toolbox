@@ -27,11 +27,13 @@ foreach($sys_menu->menu() as $mainItem) {
 						$tmpMods = new Modules($db, $subItem['id']);
 						$tmods = $tmpMods->modules();
 						//print_r($tmods);
-						foreach($tmods as $tmpMod) {
-							print "&nbsp;&nbsp;-- ".$tmpMod['module_name'];
-							print "<a href=\"?".FORM_ACTION."=".FORM_ACTION_DELETE."&id=".$tmpMod['id']."\">Delete</a>";
-							print "<br>";
-						} 
+						if ($tmods != null) {
+							foreach($tmods as $tmpMod) {
+								print "&nbsp;&nbsp;-- ".$tmpMod['module_name'];
+								print "<a href=\"?".FORM_ACTION."=".FORM_ACTION_DELETE."&id=".$tmpMod['id']."\">Delete</a>";
+								print "<br>";
+							} 
+						}
 					}
 				}//ENd foreach / if 
 			?>

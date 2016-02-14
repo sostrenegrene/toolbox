@@ -41,7 +41,7 @@ class MenuAdmin {
 			$out['main_menu'] .= "<option value=\"".$mitem['id']."\">".$mitem['name']."</option>\n";
 			//Make main menu select <option>'s
 			if ($sitems != null) {
-				foreach($sitems as $sitem) { $out['sub_menu'] .= "<option value=\"".$sitem['id']."\">".$sitem['name']."</option>\n"; }
+				foreach($sitems as $sitem) { $out['sub_menu'] .= "<option value=\"".$sitem['id']."\">".$mitem['name']."/".$sitem['name']."</option>\n"; }
 			}
 		}
 		
