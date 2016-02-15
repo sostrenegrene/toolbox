@@ -11,22 +11,37 @@ class Stores {
 		$this->franchiser_id = $franchiser_id;
 	}
 	
-	private function make_Store($franchiser_id,$store_id,$store_name,$address,$city,$zipcode) {
-		$query = "INSERT INTO " . TABLE_GRENES_STORES . "(franchiser_id,store_id,name,address,city,zipcode)
-				VALUES ('".$franchiser_id."','".$store_id."','".$store_name."','".$address."','".$city."','".$zipcode."')";
+	private function make_Store($franchiser_id,$store_id,$store_name,$address,$city,$zipcode,$org_num,$bax,$tof,$cvr,$forret_num) {
+		$query = "INSERT INTO " . TABLE_GRENES_STORES . "(franchiser_id,
+															store_id,
+															name,
+															address,
+															city,
+															zipcode,
+															organization_number,
+															bax,
+															tof,
+															cvr,
+															forretnings_nummer)
+				VALUES ('".$franchiser_id."','".$store_id."','".$store_name."','".$address."','".$city."','".$zipcode."','".$org_num."','".$bax."','".$tof."','".$cvr."','".$forret_num."')";
 		
 		$this->db->query($query);
 		print $this->db->error(); 
 	}
 	
-	private function update_Store($franchiser_id,$store_id,$store_name,$address,$city,$zipcode) {
+	private function update_Store($franchiser_id,$store_id,$store_name,$address,$city,$zipcode,$org_num,$bax,$tof,$cvr,$forret_num) {
 		$query = "UPDATE " . TABLE_GRENES_STORES . " SET 
 						franchiser_id = '".$franchiser_id."',
 						store_id = '".$store_id."',
 						name = '".$store_name."',
 						address = '".$address."',
 						city = '".$city."',
-						zipcode = '".$zipcode."' 
+						zipcode = '".$zipcode."',
+						organization_number = '".$org_num."',
+						bax = '".$bax."',
+						tof = '".$tof."',
+						cvr = '".$cvr."',
+						forretnings_nummer = '".$forret_num."'
 						WHERE id = '".$this->store_dbid."'";
 	
 		$this->db->query($query);
@@ -40,18 +55,23 @@ class Stores {
 		$a['name'] = "";
 		$a['address'] = "";
 		$a['city'] = "";
-		$a['zipcode'] = "";		
+		$a['zipcode'] = "";
+		$a['organization_number'] = "";
+		$a['bax'] = "";
+		$a['tof'] = "";
+		$a['cvr'] = "";
+		$a['forretnings_nummer'] = "";
 		
 		return $a;
 	}
 	
-	function save_Store($franchiser_id,$store_id,$store_name,$address,$city,$zipcode) {
+	function save_Store($franchiser_id,$store_id,$store_name,$address,$city,$zipcode,$org_num,$bax,$tof,$cvr,$forret_num) {
 		
 		if ($this->store_dbid != 0) {
-			$this->update_Store($franchiser_id,$store_id,$store_name,$address,$city,$zipcode);
+			$this->update_Store($franchiser_id,$store_id,$store_name,$address,$city,$zipcode,$org_num,$bax,$tof,$cvr,$forret_num);
 		}
 		else {
-			$this->make_Store($franchiser_id,$store_id,$store_name,$address,$city,$zipcode);
+			$this->make_Store($franchiser_id,$store_id,$store_name,$address,$city,$zipcode,$org_num,$bax,$tof,$cvr,$forret_num);
 		}
 		
 	}
@@ -100,15 +120,5 @@ class Stores {
 	}
 	
 }
-	
 
-/*
- * id
-frachise_id
-store_id
-name
-address
-city
-zipcode
- */
 ?>

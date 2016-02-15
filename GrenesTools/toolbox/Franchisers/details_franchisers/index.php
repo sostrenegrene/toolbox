@@ -8,14 +8,15 @@ $frachisers = $franch->get_All();
 //print_r($frachisers);
 if ($frachisers != null) {
 	foreach($frachisers as $fItem) {
-		//print $fItem['franchiser']."<br>";
+		require 'franchiser.php';
 		
-		$stores = new Stores($db,0,$fItem['id']);		
-		$sItems = $stores->get_All();
-		//print_r($sItems);
+		
+		
+		//TODO Load store details
+		
 		if ($sItems != null) {
 			foreach($sItems as $i=>$sItem) {				
-				require 'store.php';
+				//TODO Load POS details
 			}
 		}
 	}//End foreach

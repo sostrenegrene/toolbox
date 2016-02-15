@@ -11,7 +11,17 @@ $stores = new Stores($db,$getset->header("id"));
 switch($getset->header(FORM_ACTION)) {
 	
 	case FORM_ACTION_SAVE:
-		$stores->save_Store($getset->header("franchiser_id"),$getset->header("store_id"),$getset->header("store_name"),$getset->header("address"),$getset->header("city"),$getset->header("zipcode"));
+		$stores->save_Store($getset->header("franchiser_id"),
+							$getset->header("store_id"),
+							$getset->header("store_name"),
+							$getset->header("address"),
+							$getset->header("city"),
+							$getset->header("zipcode"),
+							$getset->header("organization_number"),
+							$getset->header("bax"),
+							$getset->header("tof"),
+							$getset->header("cvr"),
+							$getset->header("forretnings_nummer"));
 		break;
 		
 	case FORM_ACTION_DELETE:

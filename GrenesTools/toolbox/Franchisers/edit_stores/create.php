@@ -7,6 +7,11 @@ $getset->setStandardValue("store_name",$storeItem['name']);
 $getset->setStandardValue("address",$storeItem['address']);
 $getset->setStandardValue("city",$storeItem['city']);
 $getset->setStandardValue("zipcode",$storeItem['zipcode']);
+$getset->setStandardValue("organization_number",$storeItem['organization_number']);
+$getset->setStandardValue("bax",$storeItem['bax']);
+$getset->setStandardValue("tof",$storeItem['tof']);
+$getset->setStandardValue("cvr",$storeItem['cvr']);
+$getset->setStandardValue("forretnings_nummer",$storeItem['forretnings_nummer']);
 ?>
 
 <div class="admin-block-sff inline">
@@ -48,6 +53,31 @@ $getset->setStandardValue("zipcode",$storeItem['zipcode']);
 			<tr>
 				<td>
 					<input type="text" name="zipcode" value="<?=$getset->header("zipcode")?>" placeholder="Zipcode">
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<input type="text" name="organization_number" value="<?=$getset->header("organization_number")?>" placeholder="Organization number">
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<input type="text" name="bax" value="<?=$getset->header("bax")?>" placeholder="Bax">
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<input type="text" name="tof" value="<?=$getset->header("tof")?>" placeholder="tof">
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<input type="text" name="cvr" value="<?=$getset->header("cvr")?>" placeholder="cvr">
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<input type="text" name="forretnings_nummer" value="<?=$getset->header("forretnings_nummer")?>" placeholder="Forretnings nummer">
 				</td>
 			</tr>
 			<tr>

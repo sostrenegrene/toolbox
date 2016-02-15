@@ -40,3 +40,11 @@ html,body {
 .inline {
 	display:inline-block;
 }
+
+.hidden {
+	display:none;
+}
+
+.show {
+	display:block;
+}

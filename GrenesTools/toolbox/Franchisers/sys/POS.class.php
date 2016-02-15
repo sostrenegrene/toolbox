@@ -11,26 +11,26 @@ class POS {
 		$this->store_dbid = $store_dbid;
 	}
 	
-	private function make_POS($store_id,$pos_num,$terminal_id) {
-		$query = "INSERT INTO " . TABLE_GRENES_POS . " (store_id,pos_num,terminal_id) VALUES ('".$store_id."','".$pos_num."','".$terminal_id."')";
+	private function make_POS($store_id,$pos_num,$terminal_id,$teamviewer_user,$teamviewer_pass) {
+		$query = "INSERT INTO " . TABLE_GRENES_POS . " (store_id,pos_num,terminal_id,teamviewer_user,teamviewer_pass) VALUES ('".$store_id."','".$pos_num."','".$terminal_id."','".$teamviewer_user."','".$teamviewer_pass."')";
 		$this->db->query($query);
 		
-		print $this->db->error();
+		print $this->db->error(__FUNCTION__);
 	}
 	
-	private function update_POS($store_id,$pos_num,$terminal_id) {
-		$query = "UPDATE " . TABLE_GRENES_POS . " SET store_id = '".$store_id."', pos_num = '".$pos_num."', terminal_id = '".$terminal_id."' WHERE id = '".$this->pos_id."'";
+	private function update_POS($store_id,$pos_num,$terminal_id,$teamviewer_user,$teamviewer_pass) {
+		$query = "UPDATE " . TABLE_GRENES_POS . " SET store_id = '".$store_id."', pos_num = '".$pos_num."', terminal_id = '".$terminal_id."', teamviewer_user = '".$teamviewer_user."',teamviewer_pass = '".$teamviewer_pass."' WHERE id = '".$this->pos_id."'";
 		$this->db->query($query);
 	
-		print $this->db->error();
+		print $this->db->error(__FUNCTION__);
 	}
 
-	function save_POS($store_id,$pos_num,$terminal_id) {
+	function save_POS($store_id,$pos_num,$terminal_id,$teamviewer_user,$teamviewer_pass) {
 		if ($this->pos_id != 0) {
-			$this->update_POS($store_id,$pos_num,$terminal_id);
+			$this->update_POS($store_id,$pos_num,$terminal_id,$teamviewer_user,$teamviewer_pass);
 		}
 		else {
-			$this->make_POS($store_id,$pos_num,$terminal_id);
+			$this->make_POS($store_id,$pos_num,$terminal_id,$teamviewer_user,$teamviewer_pass);
 		}
 	}
 	
@@ -38,7 +38,7 @@ class POS {
 		$query = "DELETE FROM " . TABLE_GRENES_POS . " WHERE id = '".$this->pos_id."'";
 		$this->db->query($query);
 	
-		print $this->db->error();
+		print $this->db->error(__FUNCTION__);
 	}
 	
 	function get_All() {
@@ -48,7 +48,7 @@ class POS {
 		$this->db->query($query);
 		$res = $this->db->get_rows();
 		
-		print $this->db->error();
+		print $this->db->error(__FUNCTION__);
 		
 		return $res;
 	}
@@ -60,7 +60,7 @@ class POS {
 		
 		if ($res != null) { $res = $res[0]; }
 		
-		print $this->db->error();
+		print $this->db->error(__FUNCTION__);
 		
 		return $res;
 	}
