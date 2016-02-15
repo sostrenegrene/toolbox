@@ -3,10 +3,12 @@ class POS {
 	
 	var $db;
 	var $pos_id;
+	var $store_dbid;
 	
-	function __construct($db,$id) {
+	function __construct($db,$id=0,$store_dbid=0) {
 		$this->db = $db;
 		$this->pos_id = $id;
+		$this->store_dbid = $store_dbid;
 	}
 	
 	private function make_POS($store_id,$pos_num,$terminal_id) {
@@ -40,7 +42,9 @@ class POS {
 	}
 	
 	function get_All() {
-		$query = "SELECT * FROM " . TABLE_GRENES_POS;
+		if ($this->store_dbid != 0) { $where = " WHERE store_id = '".$this->store_dbid."' "; }
+		else { $where = ""; }
+		$query = "SELECT *,CONVERT(varchar,pos_online,120) AS pos_online, DATEDIFF(MINUTE,pos_online,GETDATE()) AS online_minute FROM " . TABLE_GRENES_POS . $where . " ORDER BY store_id ASC";
 		$this->db->query($query);
 		$res = $this->db->get_rows();
 		

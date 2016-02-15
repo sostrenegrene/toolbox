@@ -8,6 +8,7 @@
 <link rel="stylesheet" type="text/css" href="system/layout/styles/main_style.css">
 <link rel="stylesheet" type="text/css" href="system/layout/styles/admin.css">
 <link rel="stylesheet" type="text/css" href="system/layout/styles/menu.css">
+<link rel="stylesheet" type="text/css" href="system/layout/styles/pos_monitor.css">
 <title>Grenes Toolbox</title>
 </head>
 <body>

@@ -3,14 +3,13 @@ session_start();
 
 require_once 'system/config/config.php';
 require_once 'system/sys_lib/getset.php';
-require_once 'system/sys_lib/mysql.php';
+
 require_once 'system/sys_lib/mssql.class.php';
 
 require_once 'system/includes/Menus.class.php';
 require_once 'system/includes/Modules.class.php';
 
 $getset = new GetSet();
-//$db 	= new MySQL(DB_HOST, DB_USER, DB_PASS, DB_DB);
 $db 	= new MS_SQL(DB_HOST, DB_USER, DB_PASS, DB_DB);
 
 //Save "load" id to session
@@ -31,6 +30,4 @@ $sys_mods = new Modules($db,$getset->header("load"));
 <?php require_once 'system/layout/body.php'; ?>
 
 <!-- INCLUDE FOOT -->
-<?php require_once 'system/layout/foot.php'; 
-print $db->error();
-?>
+<?php require_once 'system/layout/foot.php'; ?>

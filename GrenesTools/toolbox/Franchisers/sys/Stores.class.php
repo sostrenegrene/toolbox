@@ -3,10 +3,12 @@ class Stores {
 	
 	var $db;
 	var $store_dbid;	
+	var $franchiser_id;
 	
-	function __construct($db,$id=0) {
+	function __construct($db,$id=0,$franchiser_id=0) {
 		$this->db = $db;
 		$this->store_dbid = $id;
+		$this->franchiser_id = $franchiser_id;
 	}
 	
 	private function make_Store($franchiser_id,$store_id,$store_name,$address,$city,$zipcode) {
@@ -61,7 +63,9 @@ class Stores {
 	}
 	
 	function get_All() {
-		$query = "SELECT * FROM ". TABLE_GRENES_STORES;
+		
+		if ($this->franchiser_id != 0) { $query = "SELECT * FROM ". TABLE_GRENES_STORES . " WHERE franchiser_id = '".$this->franchiser_id."' ORDER BY franchiser_id ASC"; }
+		else { $query = "SELECT * FROM ". TABLE_GRENES_STORES . " ORDER BY franchiser_id ASC"; }
 		$this->db->query($query);
 		$res = $this->db->get_rows();
 		

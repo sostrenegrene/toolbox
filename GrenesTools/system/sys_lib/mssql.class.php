@@ -39,17 +39,20 @@
  		return sqlsrv_escape_string($this->conn, $string);
  	}
  	
- 	function error() {
+ 	function error($method_name="") {
  		$out = "";
-		/*
-		foreach(sqlsrv_errors() as $err) {
-			$out .= $e['message'];
-		}
-		*/
 		
-		print "<pre>";
-		print_r(sqlsrv_errors());
-		print "</pre>";
+ 		$errs = sqlsrv_errors();
+ 		if ($errs != null) {
+			foreach($errs as $err) {
+				$out .= $method_name ." -> " . $err['message'];
+			}
+ 		}
+		
+		
+		//print "<pre>";
+		//print_r(sqlsrv_errors());
+		//print "</pre>";
 		
 		return $out;
  	}

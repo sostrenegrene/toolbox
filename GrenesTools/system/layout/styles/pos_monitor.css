@@ -1,0 +1,21 @@
+@CHARSET "UTF-8";
+
+.online-status-on {
+	width:25px;
+	height:25px;
+	background-color:#00ff00;
+	text-align:center;	
+}
+
+.online-status-off {
+	width:25px;
+	height:25px;
+	background-color:#ff0000;
+	text-align:center;		
+}
+
+.pos-table {
+	width:100%;
+	font-size:1.5em;
+	text-align:right;
+}
