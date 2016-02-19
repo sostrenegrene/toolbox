@@ -1,0 +1,28 @@
+<?php
+$pos = new POS($db,0,$sItem['id']);
+$posList = $pos->get_All();
+$pos_string = "";
+//print_r($posList);
+if ($posList != null) {	
+	foreach($posList as $pItem) {
+		if (($pItem['online_minute'] == null) || ($pItem['online_minute'] > 5)) { $status = "off"; }
+		else { $status = "on"; }
+
+		$pos_string .= "<div class=\"online-status-".$status." inline\">".$pItem['pos_num']."</div>&nbsp;";
+	}//ENd foreach	
+}//ENd if
+?>
+<div class="monitor-block-s inline">
+	<table class="pos-table">
+		<tr>
+			<th>
+				<?=$sItem['store_id']?>
+			</th>
+		</tr>
+		<tr>
+			<td>			
+				<?=$pos_string?>			
+			</td>
+		</tr>
+	</table>
+</div>

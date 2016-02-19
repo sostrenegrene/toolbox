@@ -14,9 +14,11 @@ if ($frachisers != null) {
 		$sItems = $stores->get_All();
 		//print_r($sItems);
 		if ($sItems != null) {
+		?> <div class="monitor-block"> <?php 
 			foreach($sItems as $i=>$sItem) {				
 				require 'store.php';
 			}
+		?> </div> <?php 
 		}
 	}//End foreach
 }//End if

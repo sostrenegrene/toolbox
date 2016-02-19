@@ -16,4 +16,5 @@ define("FORM_ACTION","form_action");
 define("FORM_ACTION_SAVE","form_save");
 define("FORM_ACTION_DELETE","form_delete");
 define("FORM_ACTION_UPDATE","form_update");
+define("FORM_ACTION_SEARCH","form_search");
 ?>

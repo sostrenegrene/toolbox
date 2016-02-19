@@ -1,22 +1,37 @@
 <?php
 $pos = new POS($db,0,$sItem['id']);
 $posList = $pos->get_All();
+$status = $pos->get_Status();
 $pos_string = "";
-//print_r($posList);
+//print_r($status);
+$pos_string = "";
 if ($posList != null) {	
-	foreach($posList as $pItem) {
-		if (($pItem['online_minute'] == null) || ($pItem['online_minute'] > 5)) { $status = "off"; }
-		else { $status = "on"; }
 
-		$pos_string .= "<div class=\"online-status-".$status." inline\">".$pItem['pos_num']."</div>&nbsp;";
-	}//ENd foreach	
+	if ($status['total'] == 0) {
+		$pos_string = "<div class=\"online-status-inactive\">".$status['total']."</div>";
+	}
+	else {
+		if ($status['offline'] > 0) {
+			$pos_string = "<div class=\"online-status-off\">".$status['offline']."</div>";
+		}
+		else {
+			$pos_string = "<div class=\"online-status-on\">".$status['total']."</div>";
+		}
+	}
+	
 }//ENd if
 ?>
-<div class="admin-block">
+<div class="monitor-block-s inline">
 	<table class="pos-table">
 		<tr>
-			<th><?=$sItem['name']?></th>
-			<td><?=$pos_string?></td>
+			<th>
+				<?=$sItem['store_id']?>
+			</th>
+		</tr>
+		<tr>
+			<td>			
+				<?=$pos_string?>			
+			</td>
 		</tr>
 	</table>
 </div>

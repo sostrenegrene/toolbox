@@ -1,10 +1,7 @@
-<div class="franchiser-block-s">
-	<table>			
-		<tr>
-			<th>POS</th>
-			<td><?=$pItem['pos_num']?></td>
-			<th>Term ID</th>
-			<td><?=$pItem['terminal_id']?></td>			
-		</tr>	
-	</table>
-</div>
+<tr>
+	<td><?=$pItem['pos_num']?></td>
+	<td><?=$pItem['terminal_id']?></td>
+	<td><?=$pItem['terminal_model']?></td>
+	<td><?=$pItem['terminal_software']?></td>
+	<td><?=$pItem['terminal_software_version']?></td>
+</tr>	

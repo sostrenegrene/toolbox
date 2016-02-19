@@ -26,13 +26,19 @@ class Menus {
 		return $this->db->get_rows();
 	}
 	
-	function menuIdByName($name){
-		$query = "SELECT id FROM " . DB_TABLE_MENUS . " WHERE name = '".$name."'";
+	function menuIdByName($name,$subForMemnu=null){
+		if ($subForMemnu != null) { $s = " AND sub_id = (SELECT id FROM " . DB_TABLE_MENUS . " WHERE name = '".$sub_id."')"; }
+		else { $s = ""; }
+		
+		//$query = "SELECT id FROM " . DB_TABLE_MENUS . " WHERE name = '".$name."'".$s;
+		$query = "SELECT id FROM " . DB_TABLE_MENUS . " WHERE name = '".$name."'".$s;
 		$this->db->query($query);
-		$res = $this->db->get_rows();
+		$res = $this->db->get_rows();		
+		
+		print $this->db->error();
 		if ($res != null) { $res = $res[0]['id']; }
 		
-		return $id;
+		return $res;
 	}
 	
 	function menu() {

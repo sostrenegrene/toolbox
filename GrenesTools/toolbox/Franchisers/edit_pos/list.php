@@ -27,7 +27,10 @@ if ($posItems != null) { foreach ($posItems as $posItem) {
 					<img src="system/layout/images/teamviewer-icon200x200.png" style="width:25px;height:25px;">			
 				</a>
 			</td>
-			<td><?=$posItem['store_id']?> / <?=$posItem['pos_num']?></td>
+			<td>
+				<?=$posItem['store_name']?><br>
+				<sup>http://192.168.100.11/pos_api.php <?=$posItem['store_id']?> <?=$posItem['pos_num']?></sup>
+			</td>
 			<td>
 				<a href="?id=<?=$posItem['id']?>&store_dbid=<?=$posItem['store_id']?>">Edit</a>
 				<a href="?id=<?=$posItem['id']?>&<?=FORM_ACTION?>=<?=FORM_ACTION_DELETE?>">Del</a>

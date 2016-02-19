@@ -48,6 +48,8 @@ class Franchisers {
 		$a['tof'] = "";
 		$a['cvr'] = "";
 		$a['forretnings_nummer'] = "";
+		$a['email'] = "";
+		$a['phone_number'] = "";
 		
 		return $a;
 	}
@@ -60,9 +62,9 @@ class Franchisers {
 	 * @param int $tof
 	 */
 	//private function make_Franchiser($franchiser,$org_num,$bax,$tof,$cvr,$forretnings_nr) {
-	private function make_Franchiser($franchiser) {
+	private function make_Franchiser($franchiser,$email,$phone) {
 		//$query = "INSERT INTO " . TABLE_GRENES_FRANCHISERS . " (franchiser,bax,tof,organization_number,cvr,forretnings_nummer) VALUES ('".$franchiser."','".$bax."','".$tof."','".$org_num."','".$cvr."','".$forretnings_nr."')";
-		$query = "INSERT INTO " . TABLE_GRENES_FRANCHISERS . " (franchiser) VALUES ('".$franchiser."')";
+		$query = "INSERT INTO " . TABLE_GRENES_FRANCHISERS . " (franchiser,email,phone_number) VALUES ('".$franchiser."','".$email."','".$phone."')";
 		$this->db->query($query);
 		print $this->db->error();
 	}
@@ -76,23 +78,23 @@ class Franchisers {
 	 * @param int $tof
 	 */
 	//private function update_Franchiser($franchiser,$org_num,$bax,$tof,$cvr,$forretnings_nr) {
-	private function update_Franchiser($franchiser) {
+	private function update_Franchiser($franchiser,$email,$phone) {
 		//$query = "UPDATE " . TABLE_GRENES_FRANCHISERS . " SET franchiser = '".$franchiser."', bax ='".$bax."', tof = '".$tof."',organization_number = '".$org_num."', cvr = '".$cvr."',forretnings_nummer = '".$forretnings_nr."' WHERE id = '".$this->franchiser_id."'";
-		$query = "UPDATE " . TABLE_GRENES_FRANCHISERS . " SET franchiser = '".$franchiser."' WHERE id = '".$this->franchiser_id."'";
+		$query = "UPDATE " . TABLE_GRENES_FRANCHISERS . " SET franchiser = '".$franchiser."',email = '".$email."',phone_number = '".$phone."' WHERE id = '".$this->franchiser_id."'";
 		$this->db->query($query);
 		print $this->db->error();
 	}
 	
 	//function save_Franchiser($franchiser,$org_num,$bax,$tof,$cvr,$forretnings_nr) {
-	function save_Franchiser($franchiser) {
+	function save_Franchiser($franchiser,$email,$phone) {
 		
 		if ($this->franchiser_id != 0) {
 			//$this->update_Franchiser($id,$franchiser,$org_num,$bax,$tof,$cvr,$forretnings_nr);
-			$this->update_Franchiser($franchiser);
+			$this->update_Franchiser($franchiser,$email,$phone);
 		}
 		else {
 			//$this->make_Franchiser($franchiser,$org_num,$bax,$tof,$cvr,$forretnings_nr);
-			$this->make_Franchiser($franchiser);
+			$this->make_Franchiser($franchiser,$email,$phone);
 		}
 		
 	}

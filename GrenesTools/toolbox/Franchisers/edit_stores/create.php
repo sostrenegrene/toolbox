@@ -12,6 +12,9 @@ $getset->setStandardValue("bax",$storeItem['bax']);
 $getset->setStandardValue("tof",$storeItem['tof']);
 $getset->setStandardValue("cvr",$storeItem['cvr']);
 $getset->setStandardValue("forretnings_nummer",$storeItem['forretnings_nummer']);
+$getset->setStandardValue("country",$storeItem['country']);
+
+//print_r($storeItem);
 ?>
 
 <div class="admin-block-sff inline">
@@ -20,13 +23,21 @@ $getset->setStandardValue("forretnings_nummer",$storeItem['forretnings_nummer'])
 		<input type="hidden" name="id" value="<?=$getset->header("id")?>">
 		<table>
 			<tr>
-				<th>Franchiser</th>				
+				<th>Store <a href="?">Clear</a></th>				
 			</tr>
 			<tr>
 				<td>
 					<select name="franchiser_id">
 						<option>Franchiser</option>
 						<?=$franc->get_SelectOptions()?>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<select name="country">
+						<option>Country</option>
+						<?=$stores->get_CountrySelectOptions($getset->header("country"))?>
 					</select>
 				</td>
 			</tr>

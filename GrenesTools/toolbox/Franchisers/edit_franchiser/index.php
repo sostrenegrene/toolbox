@@ -17,7 +17,7 @@ switch($getset->header(FORM_ACTION)) {
 			$getset->header("cvr"),
 			$getset->header("forretnings_nr"));
 			*/
-		$franc->save_Franchiser($getset->header("franchiser"));
+		$franc->save_Franchiser($getset->header("franchiser"),$getset->header("email"),$getset->header("phone_number"));
 		break;
 		
 	case FORM_ACTION_DELETE:

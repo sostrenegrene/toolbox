@@ -21,7 +21,8 @@ switch($getset->header(FORM_ACTION)) {
 							$getset->header("bax"),
 							$getset->header("tof"),
 							$getset->header("cvr"),
-							$getset->header("forretnings_nummer"));
+							$getset->header("forretnings_nummer"),
+							$getset->header("country"));
 		break;
 		
 	case FORM_ACTION_DELETE:

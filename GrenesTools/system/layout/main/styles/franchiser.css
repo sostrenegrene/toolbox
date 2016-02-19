@@ -2,63 +2,84 @@
 
 .franchiser-block {
 	border:#000 0px solid;		
-	width:800px;
+	width:100% -1em;
 	margin:1em;	
 	padding:0px;
 	vertical-align:top;	
 }
 
+.franchiser-header {
+	background-color:#f5f5f5;	
+}
+
+.franchiser-block p {
+	text-decoration:underline;	
+}
+
 .franchiser-block table {
 	width:100%;
 	border:1px solid;
-	background-color:#ccc;
+	/*background-color:#ccc;*/
 	margin-bottom:5px;	
 }
 
 .franchiser-block table th {	
 	font-weight:bold;
-	font-size:0.9em;
-	text-align:left;
+	font-size:0.8em;
+	text-align:left;	
 }
 
 .franchiser-block-inner {
 	border:#000 0px solid;		
-	width:95%;	
-	padding:1px;
+	width:100% -1em;	
+	padding:0px;
 	margin-bottom:1em;
 	vertical-align:top;	
 }
 
 .franchiser-block-inner table {
+	position:relative;
 	width:100%;
-	border:1px solid;
-	background-color:#ccc;
+	border:none;
+	border-bottom:1px solid;
+	/*background-color:#ccc;*/
 	margin-bottom:5px;
 }
 
 .franchiser-block-inner table th {	
 	font-weight:bold;
-	font-size:0.9em;
+	font-size:0.8em;
 	text-align:left;
 }
 
 .franchiser-block-s {
 	border:#000 0px solid;		
-	width:300px;
+	width:50%;
 	margin:1px;	
-	padding:1px;	
-	vertical-align:top;
+	padding:1px;
+	
 }
 
 .franchiser-block-s table {
 	width:100%;
-	border:1px solid;
-	background-color:#ccc;
+	border:none;
+	border-bottom:0px solid;
+	/*background-color:#ccc;*/
 	margin-bottom:1px;
 }
 
 .franchiser-block-s table th {	
 	font-weight:bold;
-	font-size:0.9em;
+	font-size:0.8em;
 	text-align:left;
+}
+
+.franchiser-block-s table td {	
+	font-weight:none;	
+	border:none;
+	border-bottom:1px solid;
+}
+
+.th-width {
+	width:150px;
 }

@@ -1,5 +1,9 @@
 <?php 
 $francItem = $franc->get_One($getset->header("id"));
+
+$getset->setStandardValue("franchiser",$francItem['franchiser']);
+$getset->setStandardValue("email",$francItem['email']);
+$getset->setStandardValue("phone_number",$francItem['phone_number']);
 ?>
 <div class="admin-block-sff inline">
 <form method="get" action="?">
@@ -11,36 +15,19 @@ $francItem = $franc->get_One($getset->header("id"));
 		</tr>
 		<tr>
 			<td>
-				<input type="text" name="franchiser" value="<?=$francItem['franchiser']?>" placeholder="Franchiser">
-			</td>
-		</tr>
-		<!-- 
-		<tr>
-			<td>
-				<input type="text" name="org_num" value="<?=$francItem['organization_number']?>" placeholder="Organization Number(no)">
+				<input type="text" name="franchiser" value="<?=$getset->header("franchiser")?>" placeholder="Franchiser">
 			</td>
 		</tr>
 		<tr>
 			<td>
-				<input type="text" name="bax" value="<?=$francItem['bax']?>" placeholder="Bax(no)">
+				<input type="text" name="email" value="<?=$getset->header("email")?>" placeholder="E-mail">
 			</td>
 		</tr>
 		<tr>
 			<td>
-				<input type="text" name="tof" value="<?=$francItem['tof']?>" placeholder="Tof(no)">
+				<input type="text" name="phone_number" value="<?=$getset->header("phone_number")?>" placeholder="Phone Number">
 			</td>
-		</tr>
-		<tr>
-			<td>
-				<input type="text" name="cvr" value="<?=$francItem['cvr']?>" placeholder="CVR(dk)">
-			</td>
-		</tr>
-		<tr>
-			<td>
-				<input type="text" name="forretnings_nr" value="<?=$francItem['forretnings_nummer']?>" placeholder="Forretnings nr.(dk)">
-			</td>
-		</tr>
-		 -->
+		</tr>		
 		<tr>
 			<td>
 				<input type="submit" value="Save">				

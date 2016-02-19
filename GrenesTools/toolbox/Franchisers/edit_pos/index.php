@@ -12,7 +12,15 @@ $pos = new POS($db,$getset->header("id"));
 
 switch($getset->header(FORM_ACTION)) {
 	case FORM_ACTION_SAVE:
-		$pos->save_POS($getset->header("store_dbid"),$getset->header("pos_num"),$getset->header("terminal_id"),$getset->header("teamviewer_user"),$getset->header("teamviewer_pass"));
+		$pos->save_POS($getset->header("store_dbid"),
+					$getset->header("pos_num"),
+					$getset->header("terminal_id"),
+					$getset->header("teamviewer_user"),
+					$getset->header("teamviewer_pass"),
+					$getset->header("terminal_model"),
+					$getset->header("terminal_software"),
+					$getset->header("terminal_software_version"),
+					$getset->header("terminal_software_registered"));
 		break;
 		
 	case FORM_ACTION_DELETE:

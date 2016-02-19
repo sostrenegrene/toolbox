@@ -1,0 +1,54 @@
+@CHARSET "UTF-8";
+
+html,body {
+	margin:0px;
+	padding:0px;
+}
+
+.head {
+	position:relative;
+	top:0px;
+	left:0px;
+	/*background-color:#ddd;*/
+	height:2em;
+	width:100%;
+	padding:0px;
+	margin:0px;
+	border-bottom:solid 1px #000;	
+}
+
+.foot {
+	position:absolute;
+	bottom:0px;
+	left:0px;
+	background-color:#ddd;
+	height:3em;
+	width:100%;
+	padding:0px;
+	margin:0px;
+	border-top:solid 1px #000;	
+}
+
+.module-body {
+	position:relative;
+	top:10px;
+	left:0px;	
+	width:100%;
+	border:#000 0px solid;
+}
+
+.inline {
+	display:inline-block;
+}
+
+.hidden {
+	display:none;
+}
+
+.show {
+	display:block;
+}
+
+.pointer {
+	cursor:pointer;
+}

@@ -12,8 +12,12 @@ require_once 'system/includes/Modules.class.php';
 $getset = new GetSet();
 $db 	= new MS_SQL(DB_HOST, DB_USER, DB_PASS, DB_DB);
 
-//Save "load" id to session
+//Set layout standard value
+$getset->setStandardValue("layout","main");
+
+//Save "load" id and layout to session
 $getset->setSession("load",$getset->header("load"));
+$getset->setSession("layout",$getset->header("layout"));
 
 //Create menus. Load with level 0
 $sys_menu = new Menus($db,0);
@@ -24,10 +28,10 @@ $sys_mods = new Modules($db,$getset->header("load"));
 
 
 <!-- INCLUDE HEAD/MENU -->
-<?php require_once 'system/layout/head.php'; ?>
+<?php require_once 'system/layout/'.$getset->header("layout").'/head.php'; ?>
 
 <!-- BODY(module loader) -->
-<?php require_once 'system/layout/body.php'; ?>
+<?php require_once 'system/layout/'.$getset->header("layout").'/body.php'; ?>
 
 <!-- INCLUDE FOOT -->
-<?php require_once 'system/layout/foot.php'; ?>
+<?php require_once 'system/layout/'.$getset->header("layout").'/foot.php'; ?>
