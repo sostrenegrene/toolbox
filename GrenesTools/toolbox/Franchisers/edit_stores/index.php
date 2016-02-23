@@ -1,10 +1,12 @@
 <?php
+require_once __DIR__.'/../sys/Countries.class.php';
 require_once __DIR__.'/../sys/Franchisers.class.php';
 require_once __DIR__.'/../sys/Stores.class.php';
 
 //Ensures that id always has a value
 $getset->setStandardValue("id","0");
 
+$country = new Countries($db);
 $franc = new Franchisers($db,$getset->header("franchiser_id"));
 $stores = new Stores($db,$getset->header("id"));
 
@@ -17,6 +19,10 @@ switch($getset->header(FORM_ACTION)) {
 							$getset->header("address"),
 							$getset->header("city"),
 							$getset->header("zipcode"),
+							$getset->header("store_email"),
+							$getset->header("store_phone"),
+							$getset->header("manager"),
+							$getset->header("manager_phone"),
 							$getset->header("organization_number"),
 							$getset->header("bax"),
 							$getset->header("tof"),

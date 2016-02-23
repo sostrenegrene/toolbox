@@ -1,0 +1,78 @@
+@CHARSET "UTF-8";
+
+.stores-container {
+	
+	width:100%;
+	vertical-align:top;	
+	margin:0px;
+	padding:0px;
+	
+}
+
+.stores-container a {
+	text-decoration:none;
+	color:#000;
+}
+
+.selected-bot {
+	border-bottom:1px solid #000;
+	text-decoration:none;
+	background-color:#eee;
+}
+
+.selected-r {
+	border-right:1px solid #000;
+	background-color:#eee;
+}
+
+.border {
+	border:1px solid;
+}
+
+.franchisee {
+	width:500px;
+	background-color:#ffff80;	
+}
+
+.franchisee td {
+	vertical-align:text-top;
+	width:50%;
+}
+
+.store {
+	width:500px;
+	background-color:#80ffff;
+}
+
+.store td {
+	vertical-align:text-top;
+	width:50%;
+}
+
+.store p {
+	margin:0px;
+	padding:0px;
+	font-size:0.8em;
+	font-weight:bold;
+	font-style:italic;
+}
+	
+.economics {
+	width:500px;
+	background-color:#7CFC00;
+}
+
+.economics td {
+	width:50%;
+}
+
+.pos {
+	width:500px;
+	background-color:#f5b4b4;
+}
+
+.stores-row {
+	border-bottom:1px solid #000;
+	text-decoration:none;
+	background-color:rgba(255,255,255,1);
+}

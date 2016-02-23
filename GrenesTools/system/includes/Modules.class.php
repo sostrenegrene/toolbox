@@ -21,6 +21,30 @@ class Modules {
 		$this->modules = $this->db->get_rows();
 	}
 	
+	function get_FromId($id) {
+		$query = "SELECT * FROM " . DB_TABLE_MODULES . " WHERE id = '".$id."'";
+		$this->db->query($query);
+		$res = $this->db->get_rows();
+		
+		print $this->db->error();
+		
+		if ($res != null) { $res = $res[0]; }
+		
+		return $res;
+	}
+	
+	function get_Unassigned($name) {
+		$query = "SELECT * FROM " . DB_TABLE_MODULES . " WHERE module_name = '".$name."'";
+		$this->db->query($query);
+		$res = $this->db->get_rows();
+		
+		print $this->db->error();
+		
+		if ($res != null) { $res = $res[0]; }
+		
+		return $res;
+	}
+	
 	function modules() {
 		return $this->modules;
 	}

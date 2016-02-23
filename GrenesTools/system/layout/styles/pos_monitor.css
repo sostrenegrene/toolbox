@@ -1,24 +1,32 @@
 @CHARSET "UTF-8";
 
 .online-status-on {
-	width:25px;
-	height:25px;
-	border-radius:5px;
+	width:100%;
+	height:1em;	
 	background-color:#00ff00;
 	text-align:center;	
+	font-size:1.6em;
 }
 
 .online-status-off {
-	width:25px;
-	height:25px;
-	border-radius:5px;
+	width:100%;
+	height:1em;		
 	background-color:#ff0000;
-	text-align:center;		
+	text-align:center;
+	font-size:1.6em;		
+}
+
+.online-status-inactive {
+	width:100%;
+	height:1em;		
+	background-color:#808080;
+	text-align:center;
+	font-size:1.6em;		
 }
 
 .pos-table {
 	width:100%;
-	font-size:1.5em;	
+	font-size:1em;	
 }
 
 
@@ -49,11 +57,15 @@
 }
 
 .monitor-block-s {
-	border:#000 0px solid;		
-	width:400px;
-	margin:1px;	
+	border:#000 0px solid;			
+	margin:0.5em;	
 	padding:1px;
-	
+	width:2.5em;
+}
+
+.monitor-block-s a {
+	text-decoration:none;
+	color:#000;	
 }
 
 .monitor-block-s table {
@@ -61,22 +73,23 @@
 	border:none;
 	border-bottom:0px solid;
 	/*background-color:#ccc;*/
-	margin-bottom:1px;
+	margin-bottom:1px;	
 }
 
 .monitor-block-s table th {	
 	font-weight:bold;
-	font-size:0.9em;
-	text-align:left;
+	font-size:1.6em;
+	margin:0px;
+	padding:0px;	
+	text-align:center;	
 }
 
 .monitor-block-s table td {	
 	font-weight:none;
-	font-size:0.9em;	
+	
 	border:none;
+	margin:0px;
+	padding:0px;
 	border-bottom:1px solid;
-}
-
-.pos-indicator {
-	width:40%;
+	text-align:center;	
 }

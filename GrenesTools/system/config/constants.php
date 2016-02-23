@@ -6,6 +6,7 @@ define("DB_TABLE_MENUS","toolbox_sys_menu");
 define("DB_TABLE_MODULES","toolbox_sys_modules");
 
 //Module tables
+define("TABLE_GRENES_COUNTRIES","grenes_countries");
 define("TABLE_GRENES_FRANCHISERS","grenes_franchisers");
 define("TABLE_GRENES_STORES","grenes_stores");
 define("TABLE_GRENES_POS","grenes_pos");

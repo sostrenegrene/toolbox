@@ -8,8 +8,10 @@ $frachisers = $franch->get_All();
 //print_r($frachisers);
 if ($frachisers != null) {
 	foreach($frachisers as $fItem) {
-		//print $fItem['franchiser']."<br>";
-		
+?>
+		<div class="franchiser-block"><?=$fItem['franchiser']?>
+	
+<?php 	
 		$stores = new Stores($db,0,$fItem['id']);		
 		$sItems = $stores->get_All();
 		//print_r($sItems);
@@ -20,6 +22,7 @@ if ($frachisers != null) {
 			}
 		?> </div> <?php 
 		}
+		?></div><?php 
 	}//End foreach
 }//End if
 ?>

@@ -14,9 +14,9 @@ $posItems = $pos->get_All();
 <?php 
 $is_new_store = $posItems[0]['store_id']; 
 if ($posItems != null) { foreach ($posItems as $posItem) { 
-	if ($is_new_store != $posItem['store_id']) {
+	if ($is_new_store != $posItem['store_dbid']) {
 		print "<tr><td colspan=\"3\"><hr></td></tr>";
-		$is_new_store = $posItem['store_id'];
+		$is_new_store = $posItem['store_dbid'];
 	}//ENd if
 ?>
 		<tr>
@@ -28,11 +28,11 @@ if ($posItems != null) { foreach ($posItems as $posItem) {
 				</a>
 			</td>
 			<td>
-				<?=$posItem['store_name']?><br>
-				<sup>http://192.168.100.11/pos_api.php <?=$posItem['store_id']?> <?=$posItem['pos_num']?></sup>
+				<?=$posItem['store_id']?> - <?=$posItem['store_name']?><br>
+				<sup>http://192.168.100.11/pos_api.php <?=$posItem['store_dbid']?> <?=$posItem['pos_num']?></sup>
 			</td>
 			<td>
-				<a href="?id=<?=$posItem['id']?>&store_dbid=<?=$posItem['store_id']?>">Edit</a>
+				<a href="?id=<?=$posItem['id']?>&store_dbid=<?=$posItem['store_dbid']?>">Edit</a>
 				<a href="?id=<?=$posItem['id']?>&<?=FORM_ACTION?>=<?=FORM_ACTION_DELETE?>">Del</a>
 			</td>
 		</tr>

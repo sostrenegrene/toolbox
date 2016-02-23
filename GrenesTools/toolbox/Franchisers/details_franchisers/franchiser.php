@@ -11,6 +11,7 @@ $divid = "franchiser_".$fItem['id'];
 		<?php //Load stores for fanchiser 
 			$stores = new Stores($db,0,$fItem['id']);
 			$sItems = $stores->get_All();
+			//print_r($sItems);
 			if ($sItems != null) { 
 				foreach ($sItems as $sItem) { 
 					require 'store.php'; 

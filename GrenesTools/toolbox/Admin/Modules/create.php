@@ -4,6 +4,7 @@
 		<table>
 			<tr>
 				<th>Menu</th>
+				<th>Name</th>
 				<th>Package</th>
 				<th>Module</th>
 				<th>Index</th>
@@ -15,6 +16,7 @@
 						<?=$menuSelect?>
 					</select>	
 				</td>
+				<td> <input type="text" name="name" placeholder="name"> </td>
 				<td> <input type="text" name="package" placeholder="folder"> </td>
 				<td> <input type="text" name="module" placeholder="folder"> </td>			
 				<td> <input type="text" name="index" placeholder="file"> </td>

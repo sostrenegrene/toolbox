@@ -13,7 +13,7 @@ $subSelect 	= $opts['sub_menu'];
 switch($getset->header(FORM_ACTION)) {
 	
 	case FORM_ACTION_SAVE:
-		$amods->make_Module($getset->header("menu_id"), $getset->header("package"), $getset->header("module"), $getset->header("index"));
+		$amods->make_Module($getset->header("menu_id"), $getset->header("package"), $getset->header("module"), $getset->header("index"),$getset->header("name"));
 		break;
 	
 	case FORM_ACTION_DELETE:

@@ -1,5 +1,6 @@
 <?php 
 $posItem = $pos->get_One();
+$ajax_mod = $sys_mods->get_Unassigned("pos_edit_ajax");
 //print_r($posItem);
 //Assign values(if any) to getset as standard values
 //These will be loaded if nothing else is provided in header
@@ -36,7 +37,7 @@ $getset->setStandardValue("teamviewer_pass",$posItem['teamviewer_pass']);
 			</tr>
 			<tr>
 				<td>
-					<input type="text" name="terminal_id" value="<?=$getset->header("terminal_id")?>" placeholder="Terminal id">
+					<input type="text" id="terminal_id" name="terminal_id" value="<?=$getset->header("terminal_id")?>" placeholder="Terminal id">
 				</td>
 			</tr>
 			<tr>
@@ -77,3 +78,19 @@ $getset->setStandardValue("teamviewer_pass",$posItem['teamviewer_pass']);
 		</table>
 	</form>
 </div>
+<script type="text/javascript">
+inget.keyUp("terminal_id",function(data) {
+	var load_str = "load=<?=$ajax_mod['id']?>&terminal_id="+data;
+
+	ajaxr.load(load_str,function(data) {
+		console.log("Callback started");		
+		data = JSON.parse(data);
+		if (data.id != 0) { 
+			$("#terminal_id").attr("style","border:1px solid red;"); 
+		}
+		else { 
+			$("#terminal_id").attr("style","border:1px solid green;"); 
+		}
+	});
+});
+</script>

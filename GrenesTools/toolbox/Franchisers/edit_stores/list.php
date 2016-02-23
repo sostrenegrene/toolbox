@@ -1,7 +1,7 @@
 <?php
 $storeList = $stores->get_All();
 ?>
-<div class="admin-block inline">
+<div class="franchiser-block inline">
 <table>
 	<tr>
 		<th>ID</th>
@@ -13,12 +13,12 @@ $storeList = $stores->get_All();
 	</tr>
 <?php if ($storeList != null) { foreach($storeList as $storeItem) { ?>
 	<tr>
-		<td><?=$storeItem['store_id']?></td>
-		<td><?=$storeItem['name']?></td>
-		<td><?=$storeItem['address']?></td>
-		<td><?=$storeItem['city']?></td>
-		<td><?=$storeItem['zipcode']?></td>
-		<td>
+		<td class="stores-row"><?=$storeItem['store_id']?></td>
+		<td class="stores-row"><?=$storeItem['name']?></td>
+		<td class="stores-row"><?=$storeItem['address']?></td>
+		<td class="stores-row"><?=$storeItem['city']?></td>
+		<td class="stores-row"><?=$storeItem['zipcode']?></td>
+		<td class="stores-row">
 			<!-- Remember to send franchiser_id with the edit id, so franchiser is selected  -->
 			<a href="?id=<?=$storeItem['id']?>&franchiser_id=<?=$storeItem['franchiser_id']?>">Edit</a>
 			<a href="?id=<?=$storeItem['id']?>&<?=FORM_ACTION?>=<?=FORM_ACTION_DELETE?>">Del</a>

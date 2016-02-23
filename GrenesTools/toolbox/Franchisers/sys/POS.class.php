@@ -99,12 +99,20 @@ class POS {
 		for ($i=0; $i<count($l); $i++) {
 			$item = $l[$i];
 			
-			if ($item['online_minute'] == null) {
+			if ($item['online_minute'] === null) {
 				$this->current_status['total'] -= 1;
+				$item['status'] = "inactive";
 			}
 			else {
-				if ($item['online_minute'] > 5) { $this->current_status['offline'] += 1; }
+				if ($item['online_minute'] > 5) { 
+					$this->current_status['offline'] += 1;
+					$item['status'] = "offline";
+				}
+				else {
+					$item['status'] = "online";
+				}
 			}
+			$l[$i] = $item;
 		}
 		
 		if ($this->current_status['total'] < 0) { $this->current_status['total'] = 0; }		
@@ -147,6 +155,16 @@ class POS {
 		return $this->current_status;
 	}
 	
+	function get_FromTerminalId($term_id) {
+		$query = "SELECT * FROM " . TABLE_GRENES_POS . " WHERE terminal_id = '".$term_id."'";
+		$this->db->query($query);
+		$res = $this->db->get_rows();
+		if ($res != null) { $res = $res[0]; }
+		else { $res = $this->empty_POS(); }
+		
+		return $res;
+	}
+	
 	/** Get all pos entries
 	 * 
 	 * @return array
@@ -154,13 +172,13 @@ class POS {
 	function get_All() {
 		if ($this->store_dbid != 0) { $where = " WHERE pos.store_id = '".$this->store_dbid."' "; }
 		else { $where = ""; }
-		$query = "SELECT pos.*,
+		$query = "SELECT pos.*,pos.store_id AS store_dbid,
 						CONVERT(varchar,pos.pos_online,120) AS pos_online, 
 						DATEDIFF(MINUTE,pos.pos_online,GETDATE()) AS online_minute,
-						stores.name AS store_name 
+						stores.name AS store_name,stores.store_id AS store_id 
 					FROM " . TABLE_GRENES_POS . " AS pos 
 					JOIN " . TABLE_GRENES_STORES . " AS stores ON pos.store_id = stores.id " .  
-					$where . " ORDER BY pos.store_id ASC";
+					$where . " ORDER BY stores.store_id,pos.store_id ASC";
 		
 		$this->db->query($query);
 		$res = $this->db->get_rows();

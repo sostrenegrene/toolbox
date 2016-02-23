@@ -45,6 +45,8 @@ class MenuAdmin {
 			}
 		}
 		
+		$out['main_menu'] .= "<option value=\"0\">Unassigned</option>\n";
+		
 		return $out;
 	}
 	

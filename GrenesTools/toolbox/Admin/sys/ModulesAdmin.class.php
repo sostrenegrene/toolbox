@@ -8,12 +8,13 @@ class ModulesAdmin {
 		$this->db = $db;
 	}
 	
-	function make_Module($menu_id,$package,$module,$index) {
-		
+	function make_Module($menu_id,$package,$module,$index,$name=null) {
+		if ($name != null) { $n = $name; }
+		else { $n = $module; }
 		$query = "INSERT INTO " . DB_TABLE_MODULES . " 
 				(menu_id,package_folder,module_name,module_folder,module_index) 
 				VALUES
-				('".$menu_id."','".$package."','".$module."','".$module."','".$index."')";
+				('".$menu_id."','".$package."','".$n."','".$module."','".$index."')";
 		
 		$this->db->query($query);
 		

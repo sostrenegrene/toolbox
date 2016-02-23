@@ -1,5 +1,5 @@
 <?php //Debug
-//print_r($menu->menu());
+//print_r($sys_menu->menu());
 //print_r($menu->submenu(1));
 ?>
 

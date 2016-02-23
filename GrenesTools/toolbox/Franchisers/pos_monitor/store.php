@@ -22,16 +22,18 @@ if ($posList != null) {
 }//ENd if
 ?>
 <div class="monitor-block-s inline">
-	<table class="pos-table">
-		<tr>
-			<th>
-				<?=$sItem['store_id']?>
-			</th>
-		</tr>
-		<tr>
-			<td>			
-				<?=$pos_string?>			
-			</td>
-		</tr>
-	</table>
+	<a href="?load=<?=$sys_menu->menuIdByName("Stores")?>&country_id=<?=$sItem['country_id']?>&store_dbid=<?=$sItem['id']?>&franchiser_id=<?=$sItem['franchiser_id']?>">
+		<table class="pos-table">
+			<tr>
+				<th>
+					<?=$sItem['store_id']?>
+				</th>
+			</tr>
+			<tr>
+				<td>			
+					<?=$pos_string?>			
+				</td>
+			</tr>
+		</table>
+	</a>
 </div>

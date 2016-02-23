@@ -15,15 +15,14 @@ class Menus {
 	
 	private function fetch_Menus() {
 		$query = "SELECT * FROM " . DB_TABLE_MENUS . " WHERE sub_id = '0' AND level >= '".$this->level."'";
-		$this->db->query($query);
 		
-		return $this->db->get_rows();
+		return $this->db->query($query);		
 	}
 	
 	private function fetch_SubMenus($menu_id) {
 		$query = "SELECT * FROM " . DB_TABLE_MENUS . " WHERE sub_id = '".$menu_id."'";
-		$this->db->query($query);
-		return $this->db->get_rows();
+		
+		return $this->db->query($query);
 	}
 	
 	function menuIdByName($name,$subForMemnu=null){
@@ -32,8 +31,8 @@ class Menus {
 		
 		//$query = "SELECT id FROM " . DB_TABLE_MENUS . " WHERE name = '".$name."'".$s;
 		$query = "SELECT id FROM " . DB_TABLE_MENUS . " WHERE name = '".$name."'".$s;
-		$this->db->query($query);
-		$res = $this->db->get_rows();		
+		
+		$res = $this->db->query($query);		
 		
 		print $this->db->error();
 		if ($res != null) { $res = $res[0]['id']; }

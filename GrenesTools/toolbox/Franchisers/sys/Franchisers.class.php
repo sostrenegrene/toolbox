@@ -9,10 +9,12 @@ class Franchisers {
 	
 	var $db;
 	var $franchiser_id;
+	var $country_id;
 	
-	function __construct($db,$franchiser_id=null) {
+	function __construct($db,$franchiser_id=null,$country_id=null) {
 		$this->db = $db;
 		$this->franchiser_id = $franchiser_id;
+		$this->country_id = $country_id;
 	}
 	
 	/** Returns an array with all franchisers
@@ -20,7 +22,10 @@ class Franchisers {
 	 * @return array
 	 */
 	function get_All() {
-		$query = "SELECT * FROM " . TABLE_GRENES_FRANCHISERS;
+		if ($this->country_id != null) { $s = " WHERE country_id = '".$this->country_id."'"; }
+		else { $s = ""; }
+		
+		$query = "SELECT * FROM " . TABLE_GRENES_FRANCHISERS . $s;
 		$this->db->query($query);
 		$res = $this->db->get_rows();
 		
@@ -43,6 +48,7 @@ class Franchisers {
 	
 	private function empty_Franchiser() {
 		$a['franchiser'] = "";
+		$a['country_id'] = "";
 		$a['organization_number'] = "";
 		$a['bax'] = "";
 		$a['tof'] = "";
@@ -61,10 +67,8 @@ class Franchisers {
 	 * @param int $bax
 	 * @param int $tof
 	 */
-	//private function make_Franchiser($franchiser,$org_num,$bax,$tof,$cvr,$forretnings_nr) {
-	private function make_Franchiser($franchiser,$email,$phone) {
-		//$query = "INSERT INTO " . TABLE_GRENES_FRANCHISERS . " (franchiser,bax,tof,organization_number,cvr,forretnings_nummer) VALUES ('".$franchiser."','".$bax."','".$tof."','".$org_num."','".$cvr."','".$forretnings_nr."')";
-		$query = "INSERT INTO " . TABLE_GRENES_FRANCHISERS . " (franchiser,email,phone_number) VALUES ('".$franchiser."','".$email."','".$phone."')";
+	private function make_Franchiser($franchiser,$country_id,$email,$phone) {
+		$query = "INSERT INTO " . TABLE_GRENES_FRANCHISERS . " (franchiser,email,phone_number,country_id) VALUES ('".$franchiser."','".$email."','".$phone."','".$country_id."')";
 		$this->db->query($query);
 		print $this->db->error();
 	}
@@ -77,24 +81,19 @@ class Franchisers {
 	 * @param int $bax
 	 * @param int $tof
 	 */
-	//private function update_Franchiser($franchiser,$org_num,$bax,$tof,$cvr,$forretnings_nr) {
-	private function update_Franchiser($franchiser,$email,$phone) {
-		//$query = "UPDATE " . TABLE_GRENES_FRANCHISERS . " SET franchiser = '".$franchiser."', bax ='".$bax."', tof = '".$tof."',organization_number = '".$org_num."', cvr = '".$cvr."',forretnings_nummer = '".$forretnings_nr."' WHERE id = '".$this->franchiser_id."'";
-		$query = "UPDATE " . TABLE_GRENES_FRANCHISERS . " SET franchiser = '".$franchiser."',email = '".$email."',phone_number = '".$phone."' WHERE id = '".$this->franchiser_id."'";
+	private function update_Franchiser($franchiser,$country_id,$email,$phone) {
+		$query = "UPDATE " . TABLE_GRENES_FRANCHISERS . " SET franchiser = '".$franchiser."',email = '".$email."',phone_number = '".$phone."',country_id = '".$country_id."' WHERE id = '".$this->franchiser_id."'";
 		$this->db->query($query);
 		print $this->db->error();
 	}
 	
-	//function save_Franchiser($franchiser,$org_num,$bax,$tof,$cvr,$forretnings_nr) {
-	function save_Franchiser($franchiser,$email,$phone) {
+	function save_Franchiser($franchiser,$country_id,$email,$phone) {
 		
 		if ($this->franchiser_id != 0) {
-			//$this->update_Franchiser($id,$franchiser,$org_num,$bax,$tof,$cvr,$forretnings_nr);
-			$this->update_Franchiser($franchiser,$email,$phone);
+			$this->update_Franchiser($franchiser,$country_id,$email,$phone);
 		}
 		else {
-			//$this->make_Franchiser($franchiser,$org_num,$bax,$tof,$cvr,$forretnings_nr);
-			$this->make_Franchiser($franchiser,$email,$phone);
+			$this->make_Franchiser($franchiser,$country_id,$email,$phone);
 		}
 		
 	}

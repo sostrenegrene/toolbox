@@ -24,6 +24,9 @@ $sys_menu = new Menus($db,0);
 $sys_mods = new Modules($db,$getset->header("load"));
 
 //print_r($sys_menu->menu());
+//$query = "UPDATE " . TABLE_GRENES_STORES . " SET country_id = '1'";
+//$db->query($query);
+//print $db->error();
 ?>
 
 

@@ -2,6 +2,7 @@
 $francItem = $franc->get_One($getset->header("id"));
 
 $getset->setStandardValue("franchiser",$francItem['franchiser']);
+$getset->setStandardValue("country_id",$francItem['country_id']);
 $getset->setStandardValue("email",$francItem['email']);
 $getset->setStandardValue("phone_number",$francItem['phone_number']);
 ?>
@@ -16,6 +17,14 @@ $getset->setStandardValue("phone_number",$francItem['phone_number']);
 		<tr>
 			<td>
 				<input type="text" name="franchiser" value="<?=$getset->header("franchiser")?>" placeholder="Franchiser">
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<select name="country_id">
+					<option>Country</option>
+					<?=$country->get_CountrySelectOptions($getset->header("country_id"))?>
+				</select>
 			</td>
 		</tr>
 		<tr>

@@ -12,26 +12,77 @@ class Stores {
 		
 	}
 	
-	private function make_Store($franchiser_id,$store_id,$store_name,$address,$city,$zipcode,$org_num,$bax,$tof,$cvr,$forret_num,$country) {
+	private function make_Store($franchiser_id,
+								$store_id,
+								$store_name,
+								$address,
+								$city,
+								$zipcode,
+								$store_email,
+								$store_phone,
+								$manager,
+								$manager_phone,
+								$org_num,
+								$bax,
+								$tof,
+								$cvr,
+								$forret_num,
+								$country_id) 
+	{
 		$query = "INSERT INTO " . TABLE_GRENES_STORES . "(franchiser_id,
 															store_id,
 															name,
 															address,
 															city,
 															zipcode,
+															store_email,
+															store_phone,
+															manager,
+															manager_phone,
 															organization_number,
 															bax,
 															tof,
 															cvr,
 															forretnings_nummer,
-															country)
-				VALUES ('".$franchiser_id."','".$store_id."','".$store_name."','".$address."','".$city."','".$zipcode."','".$org_num."','".$bax."','".$tof."','".$cvr."','".$forret_num."','".$country."')";
+															country_id)
+				VALUES ('".$franchiser_id."',
+						'".$store_id."',
+						'".$store_name."',
+						'".$address."',
+						'".$city."',
+						'".$zipcode."',
+						'".$store_email."',
+						'".$store_phone."',
+						'".$manager."',
+						'".$manager_phone."',
+						'".$org_num."',
+						'".$bax."',
+						'".$tof."',
+						'".$cvr."',
+						'".$forret_num."',
+						'".$country_id."')";
 		
 		$this->db->query($query);
 		print $this->db->error(); 
 	}
 	
-	private function update_Store($franchiser_id,$store_id,$store_name,$address,$city,$zipcode,$org_num,$bax,$tof,$cvr,$forret_num,$country) {
+	private function update_Store($franchiser_id,
+									$store_id,
+									$store_name,
+									$address,
+									$city,
+									$zipcode,
+									$store_email,
+									$store_phone,
+									$manager,
+									$manager_phone,
+									$org_num,
+									$bax,
+									$tof,
+									$cvr,
+									$forret_num,
+									$country_id) 
+	{
 		$query = "UPDATE " . TABLE_GRENES_STORES . " SET 
 						franchiser_id = '".$franchiser_id."',
 						store_id = '".$store_id."',
@@ -39,12 +90,16 @@ class Stores {
 						address = '".$address."',
 						city = '".$city."',
 						zipcode = '".$zipcode."',
+						store_email = '".$store_email."',
+						store_phone = '".$store_phone."',
+						manager = '".$manager."',
+						manager_phone = '".$manager_phone."',
 						organization_number = '".$org_num."',
 						bax = '".$bax."',
 						tof = '".$tof."',
 						cvr = '".$cvr."',
 						forretnings_nummer = '".$forret_num."',
-						country = '".$country."'
+						country_id = '".$country_id."'
 						WHERE id = '".$this->store_dbid."'";
 	
 		$this->db->query($query);
@@ -53,13 +108,17 @@ class Stores {
 	
 	private function empty_Store() {
 		$a['id'] = "0";
-		$a['country'] = "";
+		$a['country_id'] = "";
 		$a['franchiser_id'] = "";
 		$a['store_id'] = "";
 		$a['name'] = "";
 		$a['address'] = "";
 		$a['city'] = "";
 		$a['zipcode'] = "";
+		$a['store_email'] = "";
+		$a['store_phone'] = "";
+		$a['manager'] = "";
+		$a['manager_phone'] = "";
 		$a['organization_number'] = "";
 		$a['bax'] = "";
 		$a['tof'] = "";
@@ -77,13 +136,13 @@ class Stores {
 		
 	}
 	
-	function save_Store($franchiser_id,$store_id,$store_name,$address,$city,$zipcode,$org_num,$bax,$tof,$cvr,$forret_num,$country) {
+	function save_Store($franchiser_id,$store_id,$store_name,$address,$city,$zipcode,$store_email,$store_phone,$manager,$manager_phone,$org_num,$bax,$tof,$cvr,$forret_num,$country) {
 		
 		if ($this->store_dbid != 0) {
-			$this->update_Store($franchiser_id,$store_id,$store_name,$address,$city,$zipcode,$org_num,$bax,$tof,$cvr,$forret_num,$country);
+			$this->update_Store($franchiser_id,$store_id,$store_name,$address,$city,$zipcode,$store_email,$store_phone,$manager,$manager_phone,$org_num,$bax,$tof,$cvr,$forret_num,$country);
 		}
 		else {
-			$this->make_Store($franchiser_id,$store_id,$store_name,$address,$city,$zipcode,$org_num,$bax,$tof,$cvr,$forret_num,$country);
+			$this->make_Store($franchiser_id,$store_id,$store_name,$address,$city,$zipcode,$store_email,$store_phone,$manager,$manager_phone,$org_num,$bax,$tof,$cvr,$forret_num,$country);
 		}
 		
 	}
@@ -96,22 +155,31 @@ class Stores {
 	
 	function get_All() {
 		 
-		if ($this->franchiser_id != 0) { $query = "SELECT * FROM ". TABLE_GRENES_STORES . " WHERE franchiser_id = '".$this->franchiser_id."' ORDER BY store_id ASC"; }
-		else { $query = "SELECT * FROM ". TABLE_GRENES_STORES . " ORDER BY store_id ASC"; }
+		if ($this->franchiser_id != 0) { $query = "SELECT * FROM ". TABLE_GRENES_STORES . " WHERE franchiser_id = '".$this->franchiser_id."' ORDER BY country_id,store_id ASC"; }
+		else { $query = "SELECT * FROM ". TABLE_GRENES_STORES . " ORDER BY country_id,store_id ASC"; }
 	
 		$this->db->query($query);
 		$res = $this->db->get_rows();
 		
+		print $this->db->error(__FUNCTION__);
+		
 		return $res;
 	}
 	
-	function get_One() {
-		$query = "SELECT * FROM ". TABLE_GRENES_STORES . " WHERE id = '".$this->store_dbid."'";
+	function get_One($store_id=null) {
+		if ($store_id != null) {
+			$query = "SELECT * FROM ". TABLE_GRENES_STORES . " WHERE store_id = '".$store_id."'";
+		}
+		else {
+			$query = "SELECT * FROM ". TABLE_GRENES_STORES . " WHERE id = '".$this->store_dbid."'";
+		}
 		$this->db->query($query);
 		$res = $this->db->get_rows();
 		if ($res != null) { $res = $res[0]; }
 		else { $res = $this->empty_Store(); }
 	
+		print $this->db->error(__FUNCTION__);
+		
 		return $res;
 	}
 	

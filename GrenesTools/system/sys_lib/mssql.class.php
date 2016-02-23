@@ -9,13 +9,15 @@
  class MS_SQL {
  	
  	var $conn;
- 	var $result;
+ 	var $result; 	
+ 	var $rows;
  	
  	function __construct($host,$user,$password,$database) { 		
 		$host = $host ."\\".$database;
 		$logon['Database'] = $database;
 		$logon['UID'] = $user;
-		$logon['PWD'] = $password;
+		$logon['PWD'] = $password;		
+		
  		$this->conn = sqlsrv_connect($host,$logon);
  	
 		if (!$this->conn) { 
@@ -26,6 +28,7 @@
  	}//END function
  	 	
  	function query($query) {
+ 		
  		if ($this->conn) {
 			$params = array();
 			$options =  array( "Scrollable" => SQLSRV_CURSOR_KEYSET );
@@ -33,6 +36,9 @@
 			$this->result = sqlsrv_query($this->conn,$query,$params,$options);
 		}
  		
+		$this->rows = $this->fetch_rows();	 
+		
+		return $this->rows;
  	}//END function
 
  	function escape_str($string) {
@@ -40,19 +46,14 @@
  	}
  	
  	function error($method_name="") {
- 		$out = "";
+ 		$out = false;
 		
  		$errs = sqlsrv_errors();
  		if ($errs != null) {
 			foreach($errs as $err) {
 				$out .= $method_name ." -> " . $err['message'];
 			}
- 		}
-		
-		
-		//print "<pre>";
-		//print_r(sqlsrv_errors());
-		//print "</pre>";
+ 		}		
 		
 		return $out;
  	}
@@ -74,8 +75,12 @@
 		
 	}//END function
 	
+	function get_rows() {
+		return $this->rows;
+	}
+	
 	// Returns the rows from the database in an array (array(0=> row_data_array,1=>row_data_array...))
-	function get_rows() {		
+	private function fetch_rows() {		
 		$num_rows = $this->num_rows();
 		
 		if ($num_rows > 0) {
