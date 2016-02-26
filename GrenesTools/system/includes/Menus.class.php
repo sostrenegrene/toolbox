@@ -14,13 +14,13 @@ class Menus {
 	}
 	
 	private function fetch_Menus() {
-		$query = "SELECT * FROM " . DB_TABLE_MENUS . " WHERE sub_id = '0' AND level >= '".$this->level."'";
+		$query = "SELECT * FROM " . DB_TABLE_MENUS . " WHERE sub_id = '0' AND level <= '".$this->level."'";
 		
 		return $this->db->query($query);		
 	}
 	
 	private function fetch_SubMenus($menu_id) {
-		$query = "SELECT * FROM " . DB_TABLE_MENUS . " WHERE sub_id = '".$menu_id."'";
+		$query = "SELECT * FROM " . DB_TABLE_MENUS . " WHERE sub_id = '".$menu_id."' AND level <= '".$this->level."'";
 		
 		return $this->db->query($query);
 	}

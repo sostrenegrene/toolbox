@@ -18,7 +18,7 @@ if ($frachisers != null) {
 		if ($sItems != null) {
 		?> <div class="monitor-block"> <?php 
 			foreach($sItems as $i=>$sItem) {				
-				require 'store.php';
+				//require 'store.php';
 			}
 		?> </div> <?php 
 		}

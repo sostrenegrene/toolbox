@@ -23,6 +23,6 @@ $(document).ready(function() {
 </script>
 </head>
 <body>
-<div class="head">
+<div class="head-hover">
 	<span><?php require_once 'menu.php'; ?></span>
 </div>

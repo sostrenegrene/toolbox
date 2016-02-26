@@ -89,6 +89,10 @@ class Franchisers {
 	
 	function save_Franchiser($franchiser,$country_id,$email,$phone) {
 		
+		$franchiser = htmlspecialchars($franchiser,ENT_QUOTES);
+		$email = htmlspecialchars($email,ENT_QUOTES);
+		$phone = htmlspecialchars($phone,ENT_QUOTES);
+		
 		if ($this->franchiser_id != 0) {
 			$this->update_Franchiser($franchiser,$country_id,$email,$phone);
 		}

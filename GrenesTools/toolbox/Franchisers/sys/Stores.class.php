@@ -63,7 +63,7 @@ class Stores {
 						'".$country_id."')";
 		
 		$this->db->query($query);
-		print $this->db->error(); 
+		print $this->db->error(__FUNCTION__);
 	}
 	
 	private function update_Store($franchiser_id,
@@ -103,7 +103,7 @@ class Stores {
 						WHERE id = '".$this->store_dbid."'";
 	
 		$this->db->query($query);
-		print $this->db->error();
+		print $this->db->error(__FUNCTION__);
 	}
 	
 	private function empty_Store() {
@@ -137,6 +137,14 @@ class Stores {
 	}
 	
 	function save_Store($franchiser_id,$store_id,$store_name,$address,$city,$zipcode,$store_email,$store_phone,$manager,$manager_phone,$org_num,$bax,$tof,$cvr,$forret_num,$country) {
+		
+		$store_name = htmlspecialchars($store_name,ENT_QUOTES);
+		$address = htmlspecialchars($address,ENT_QUOTES);
+		$city = htmlspecialchars($city,ENT_QUOTES);
+		$store_email = htmlspecialchars($store_email,ENT_QUOTES);
+		$store_phone = htmlspecialchars($store_phone,ENT_QUOTES);
+		$manager = htmlspecialchars($manager,ENT_QUOTES);
+		$manager_phone = htmlspecialchars($manager_phone,ENT_QUOTES);		
 		
 		if ($this->store_dbid != 0) {
 			$this->update_Store($franchiser_id,$store_id,$store_name,$address,$city,$zipcode,$store_email,$store_phone,$manager,$manager_phone,$org_num,$bax,$tof,$cvr,$forret_num,$country);

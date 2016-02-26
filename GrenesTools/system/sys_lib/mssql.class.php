@@ -33,7 +33,7 @@
 			$params = array();
 			$options =  array( "Scrollable" => SQLSRV_CURSOR_KEYSET );
 			//$this->result = sqlsrv_query($this->conn,$query);
-			$this->result = sqlsrv_query($this->conn,$query,$params,$options);
+			$this->result = sqlsrv_query($this->conn,$query,$params,$options);			
 		}
  		
 		$this->rows = $this->fetch_rows();	 
@@ -83,7 +83,7 @@
 	private function fetch_rows() {		
 		$num_rows = $this->num_rows();
 		
-		if ($num_rows > 0) {
+		if ( ($num_rows > 0) && (sqlsrv_has_rows($this->result))) {
 			
 			for ($i=0; $i<$num_rows; $i++) {
 				$result_array[$i] = sqlsrv_fetch_array($this->result, SQLSRV_FETCH_ASSOC);

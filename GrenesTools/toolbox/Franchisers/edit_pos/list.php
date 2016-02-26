@@ -29,7 +29,7 @@ if ($posItems != null) { foreach ($posItems as $posItem) {
 			</td>
 			<td>
 				<?=$posItem['store_id']?> - <?=$posItem['store_name']?><br>
-				<sup>http://192.168.100.11/pos_api.php <?=$posItem['store_dbid']?> <?=$posItem['pos_num']?></sup>
+				<sup>http://posapi.grenes.dk/api.php <?=$posItem['store_dbid']?> <?=$posItem['pos_num']?></sup>
 			</td>
 			<td>
 				<a href="?id=<?=$posItem['id']?>&store_dbid=<?=$posItem['store_dbid']?>">Edit</a>

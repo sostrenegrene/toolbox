@@ -29,9 +29,9 @@ class POS_API {
 	 */
 	private function is_Valid() {
 		$this->store_id = $this->getset->header("store_id"); 
-		$this->pos_num = $this->getset->header("pos_id");
+		$this->pos_num 	= $this->getset->header("pos_id");
 			
-		if ( ($this->store_id != null) && ($this->pos_num != null)) {
+		if ( ($this->store_id != null) && ($this->pos_num != null) ) {
 			return true;
 		}
 		else {
@@ -44,7 +44,8 @@ class POS_API {
 	 */
 	private function update_OnlineState() {
 		
-		$query = "UPDATE " . TABLE_GRENES_POS . " SET pos_online = GETDATE() WHERE store_id = '".$this->store_id."' AND pos_num = '".$this->pos_num."'";
+		//$query = "UPDATE " . TABLE_GRENES_POS . " SET pos_online = GETDATE() WHERE store_id = '".$this->store_id."' AND pos_num = '".$this->pos_num."'";
+		$query = "UPDATE " . TABLE_GRENES_POS . " SET pos_online = GETDATE() WHERE store_id = (SELECT id FROM ".TABLE_GRENES_STORES." WHERE store_id = '".$this->store_id."') AND pos_num = '".$this->pos_num."'";
 		$this->db->query($query);
 		print $query;
 		print $this->db->error( __FUNCTION__ );

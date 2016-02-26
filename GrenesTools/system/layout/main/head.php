@@ -30,6 +30,9 @@ $(document).ready(function() {
 </script>
 </head>
 <body>
-<div class="head">
-	<?php require_once 'menu.php'; ?>
-</div>
+<table class="head">
+	<tr>
+		<td><?php require_once 'menu.php'; ?></td>
+		<td class="login-container"><?php require_once 'login.php'; ?></td>
+	</tr>
+</table>

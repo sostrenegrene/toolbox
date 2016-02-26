@@ -62,6 +62,7 @@ class POS {
 					terminal_software_version = '".$term_sw_ver."', 
 					terminal_software_registered = '".$term_sw_reg."' 
 					WHERE id = '".$this->pos_id."'";
+		
 		$this->db->query($query);
 	
 		print $this->db->error(__FUNCTION__);
@@ -96,8 +97,10 @@ class POS {
 		$this->current_status['offline'] = 0;
 		//print_r($l);
 		
+		$sendWarn = false;//If true sends a warning mail
+		$warnMessage = "";
 		for ($i=0; $i<count($l); $i++) {
-			$item = $l[$i];
+			$item = $l[$i];			
 			
 			if ($item['online_minute'] === null) {
 				$this->current_status['total'] -= 1;
@@ -107,17 +110,44 @@ class POS {
 				if ($item['online_minute'] > 5) { 
 					$this->current_status['offline'] += 1;
 					$item['status'] = "offline";
+					
+					if ($item['report_flag'] == 0) { 
+						$sendWarn = true;
+						$this->flag_POSrepport($item['id'],1);
+					}
+					$warnMessage .= $item['store_id'] . " - POS: " . $item['pos_num'] . " is offline.\r\n";
 				}
 				else {
 					$item['status'] = "online";
+					
+					$this->flag_POSrepport($item['id'],0);
 				}
 			}
-			$l[$i] = $item;
+			$l[$i] = $item;			
 		}
+		
+		if ($sendWarn) { $this->send_MailWarn($warnMessage); }
 		
 		if ($this->current_status['total'] < 0) { $this->current_status['total'] = 0; }		
 		
 		return $l;
+	}
+	
+	private function send_MailWarn($message) {
+		$mailer = new SendMail();
+		$msg = "<p>Toolbox_Report</p>\r\n";
+		$msg .= $message ."\r\n";
+		
+		$mailer->add_recipient("","support@sostrenegrene.com");
+		//$mailer->add_recipient("Support","soren.pedersen@sostrenegrene.com");
+		$mailer->message("Toolbox",$msg);
+		$mailer->send();
+	}
+	
+	private function flag_POSRepport($id,$flag) {
+		$query = "UPDATE " . TABLE_GRENES_POS . " SET report_flag = '".$flag."' WHERE id = '".$id."'";
+		$this->db->query($query);
+		print $this->db->error();
 	}
 	
 	/** Save POS entry
@@ -133,6 +163,13 @@ class POS {
 	 * @param string $term_sw_reg
 	 */
 	function save_POS($store_id,$pos_num,$terminal_id,$teamviewer_user,$teamviewer_pass,$term_model,$term_sw,$term_sw_ver,$term_sw_reg) {
+		$teamviewer_user = htmlspecialchars($teamviewer_user,ENT_QUOTES);
+		$teamviewer_pass = htmlspecialchars($teamviewer_pass,ENT_QUOTES);
+		$term_model = htmlspecialchars($term_model,ENT_QUOTES);
+		$term_sw = htmlspecialchars($term_sw,ENT_QUOTES);
+		$term_sw_ver = htmlspecialchars($term_sw_ver,ENT_QUOTES);
+		$term_sw_reg = htmlspecialchars($term_sw_reg,ENT_QUOTES);
+		
 		if ($this->pos_id != 0) {
 			$this->update_POS($store_id,$pos_num,$terminal_id,$teamviewer_user,$teamviewer_pass,$term_model,$term_sw,$term_sw_ver,$term_sw_reg);
 		}

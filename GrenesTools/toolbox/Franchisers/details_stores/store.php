@@ -13,7 +13,10 @@ if ($getset->header("store_dbid") > 0) {
 		<td>
 			<table class="franchisee">
 				<tr>
-					<td style="width:50%;">Franchisee</td>
+					<td style="width:50%;">					
+						<a href="?">Franchisee</a>
+						<?php $sys_users->hasAccess(1,"<a href=\"?\">Edit</a>"); ?>	
+					</td>
 					<td>
 						<?=$franchItem['franchiser']?><br>
 						<?=$franchItem['email']?><br>
@@ -78,8 +81,7 @@ if ($getset->header("store_dbid") > 0) {
 				<tr>
 					<td>POS</td>
 					<td>Term. ID</td>
-					<td>Teamviwer</td>
-					<td>NAV</td>
+					<td>Teamviwer</td>					
 					<td style="width:50px;">Online</td>
 				</tr>
 				<?php if ($posItems != null) { foreach($posItems as $posItem) { ?>
@@ -87,8 +89,9 @@ if ($getset->header("store_dbid") > 0) {
 				<tr>
 					<td><?=$posItem['pos_num']?></td>
 					<td><?=$posItem['terminal_id']?></td>
-					<td>(LINK)</td>
-					<td>(LINK)</td>
+					<td>
+						<a href="teamviewer://<?=$posItem['teamviewer_user']?>">TW</a>
+					</td>					
 					<td><div class="<?=$posItem['status']?>"></div></td>
 				</tr>
 				
