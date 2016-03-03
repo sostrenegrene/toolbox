@@ -25,8 +25,8 @@ class Menus {
 		return $this->db->query($query);
 	}
 	
-	function menuIdByName($name,$subForMemnu=null){
-		if ($subForMemnu != null) { $s = " AND sub_id = (SELECT id FROM " . DB_TABLE_MENUS . " WHERE name = '".$sub_id."')"; }
+	function menuIdByName($name,$subForMenu=null){
+		if ($subForMenu != null) { $s = " AND sub_id = (SELECT id FROM " . DB_TABLE_MENUS . " WHERE name = '".$subForMenu."')"; }
 		else { $s = ""; }
 		
 		//$query = "SELECT id FROM " . DB_TABLE_MENUS . " WHERE name = '".$name."'".$s;

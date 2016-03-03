@@ -13,19 +13,22 @@ $country = new Countries($db);
 $countries = $country->get_All();
 ?>
 
-<table class="stores-container">
+<div style="width:100%-1em;text-align:left;" class="container__">
+<table class="inline" style=vertical-align:top;margin:0px;padding:0px;">
 <?php 
 foreach($countries as $cItem) { 
 	$cSelected = "";
 	if ($cItem['id'] == $getset->header("country_id")) { $cSelected = "selected-r"; }
 ?>
 	<tr>
-		<td class="<?=$cSelected?>" style="width:150px;vertical-align:top;">
+		<td class="<?=$cSelected?> container" style="width:150px;vertical-align:top;margin:0px;padding:0px;">
 			<a href="?country_id=<?=$cItem['id']?>"><?=$cItem['country']?></a>
 		</td>
-		<td>			
-			<?php if($getset->header("country_id") > 0) { require_once 'franchisers.php'; } ?>			
-		</td>
+		<td style="vertical-align:top;margin:0px;padding:0px;">
+			<?php if ($getset->header("country_id") == $cItem['id']) { require_once 'franchisers.php'; } ?>
+		</td>		
 	</tr>
 <?php }//ENd foreach ?>
 </table>
+<?php require_once 'store.php'; ?>
+</div>

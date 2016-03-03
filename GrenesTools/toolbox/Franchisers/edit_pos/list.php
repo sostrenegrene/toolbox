@@ -33,7 +33,7 @@ if ($posItems != null) { foreach ($posItems as $posItem) {
 			</td>
 			<td>
 				<a href="?id=<?=$posItem['id']?>&store_dbid=<?=$posItem['store_dbid']?>">Edit</a>
-				<a href="?id=<?=$posItem['id']?>&<?=FORM_ACTION?>=<?=FORM_ACTION_DELETE?>">Del</a>
+				<a href="?delete_id=<?=$posItem['id']?>&<?=FORM_ACTION?>=<?=FORM_ACTION_DELETE?>">Del</a>
 			</td>
 		</tr>
 <?php 

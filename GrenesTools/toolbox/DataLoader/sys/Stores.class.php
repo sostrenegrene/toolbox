@@ -30,75 +30,6 @@ class Stores {
 		$this->input->add($name,$value);
 	}
 	
-	/** Makes a new store entry in DB
-	 * 
-	 * @param int $franchiser_id
-	 * @param int $store_id
-	 * @param string $store_name
-	 * @param string $address
-	 * @param string $city
-	 * @param int $zipcode
-	 * @param string $store_email
-	 * @param int $store_phone
-	 * @param string $manager
-	 * @param int $manager_phone
-	 * @param int $org_num
-	 * @param int $bax
-	 * @param int $tof
-	 * @param int $cvr
-	 * @param int $forret_num
-	 * @param int $country_id
-	 */
-	private function make_Store() 
-	{
-	
-		$qf = $this->db->query_factory();
-		$qf->set_InputFactory($this->input);
-		$query = $qf->insert( TABLE_GRENES_STORES );
-			
-		
-		//Exec query
-		$this->db->query($query);
-		
-		//Print errors if any
-		print $this->db->error(__FUNCTION__);
-	}
-	
-	/** Updates a store entry in DB
-	 * 
-	 * @param int $franchiser_id
-	 * @param int $store_id
-	 * @param string $store_name
-	 * @param string $address
-	 * @param string $city
-	 * @param int $zipcode
-	 * @param string $store_email
-	 * @param int $store_phone
-	 * @param string $manager
-	 * @param int $manager_phone
-	 * @param int $org_num
-	 * @param int $bax
-	 * @param int $tof
-	 * @param int $cvr
-	 * @param int $forret_num
-	 * @param int $country_id
-	 */
-	private function update_Store() 
-	{
-		$qf = $this->db->query_factory();
-		$qf->set_InputFactory($this->input);
-		
-		$where = "id = '".$this->store_dbid."'";
-		$query = $qf->update( TABLE_GRENES_STORES,$where );
-	
-		
-		//Exec query
-		$this->db->query($query);
-		
-		//Print errors if any
-		print $this->db->error(__FUNCTION__);
-	}
-	
 	/** Returns an empty store item
 	 * 
 	 * @return array
@@ -123,53 +54,6 @@ class Stores {
 		$a['forretnings_nummer'] = "";
 		
 		return $a;
-	}
-	
-	function add_SearchOption($option,$value) {
-		
-		$a['option'] = $option;
-		$a['value'] = $value;
-		$this->search_array[] = $a; 
-		
-	}
-	
-	/** Save or update a store
-	 *
-	 * @param int $franchiser_id
-	 * @param int $store_id
-	 * @param string $store_name
-	 * @param string $address
-	 * @param string $city
-	 * @param int $zipcode
-	 * @param string $store_email
-	 * @param int $store_phone
-	 * @param string $manager
-	 * @param int $manager_phone
-	 * @param int $org_num
-	 * @param int $bax
-	 * @param int $tof
-	 * @param int $cvr
-	 * @param int $forret_num
-	 * @param int $country_id
-	 */
-	function save_Store() {
-		
-		if ($this->store_dbid != 0) {
-			$this->update_Store();
-		}
-		else {
-			$this->make_Store();
-		}
-		
-	}
-	
-	/** Delete store
-	 * 
-	 */
-	function delete_Store($id) {
-		$query = "DELETE FROM " . TABLE_GRENES_STORES . " WHERE id = '".$id."'";
-		$this->db->query($query);
-		print $this->db->error();
 	}
 	
 	/** Returns all stores
@@ -214,6 +98,13 @@ class Stores {
 		else { $res = $this->empty_Store(); }
 	
 		print $this->db->error(__FUNCTION__);
+		
+		return $res;
+	}
+	
+	function get_Search($type,$search) {
+		$query = "SELECT * FROM " . TABLE_GRENES_STORES . " WHERE ".$type." LIKE '".$search."%'";
+		$res = $this->db->query($query);
 		
 		return $res;
 	}

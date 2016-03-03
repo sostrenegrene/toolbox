@@ -11,6 +11,7 @@ body {
 	background-image:url('../images/logo543x373.png');
 	background-repeat:no-repeat;
 	background-position:center;	
+	background-color:#e9eff3;
 }
 
 .head {
@@ -109,4 +110,27 @@ body {
 
 table {
 	text-align:left;
+}
+
+.___container {
+	background-color:rgba(255,255,255,0.7);
+	margin:0px;
+	padding:0px;
+	vertical-align:top;
+	border:1px solid #f5f5f5;
+}
+
+.container {
+	position:relative;
+	background-color:rgba(255,255,255,0.9);
+	margin:1px;
+	padding:1px;	
+	vertical-align:top;
+	border:1px solid #ddd;
+	border-radius:2px;
+}
+
+.container a {
+	text-decoration:none;
+	color:#000;
 }

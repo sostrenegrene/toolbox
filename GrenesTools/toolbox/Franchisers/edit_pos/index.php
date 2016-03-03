@@ -12,19 +12,22 @@ $pos = new POS($db,$getset->header("id"));
 
 switch($getset->header(FORM_ACTION)) {
 	case FORM_ACTION_SAVE:
-		$pos->save_POS($getset->header("store_dbid"),
-					$getset->header("pos_num"),
-					$getset->header("terminal_id"),
-					$getset->header("teamviewer_user"),
-					$getset->header("teamviewer_pass"),
-					$getset->header("terminal_model"),
-					$getset->header("terminal_software"),
-					$getset->header("terminal_software_version"),
-					$getset->header("terminal_software_registered"));
+		$pos->set_Input("store_id",$getset->header("store_dbid"));
+		$pos->set_Input("pos_num",$getset->header("pos_num"));
+		$pos->set_Input("terminal_id",$getset->header("terminal_id"));
+		$pos->set_Input("teamviewer_user",$getset->header("teamviewer_user"));
+		$pos->set_Input("teamviewer_pass",$getset->header("teamviewer_pass"));
+		$pos->set_Input("terminal_model",$getset->header("terminal_model"));
+		$pos->set_Input("terminal_software",$getset->header("terminal_software"));
+		$pos->set_Input("terminal_software_version",$getset->header("terminal_software_version"));
+		$pos->set_Input("terminal_software_registered",$getset->header("terminal_software_registered"));
+		$pos->set_Input("monitor_installed",$getset->header("monitor_installed"));
+		
+		$pos->save_POS();
 		break;
 		
 	case FORM_ACTION_DELETE:
-		$pos->delete_POS();
+		$pos->delete_POS($getset->header("delete_id"));
 		break;
 }
 

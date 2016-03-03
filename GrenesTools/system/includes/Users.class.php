@@ -9,10 +9,10 @@ class Users {
 	function __construct($db,$getset) {
 		$this->db = $db;
 		$this->getset = $getset;
-		$this->token = $getset->header("sys_token");
+		$this->token = $getset->header( SYS_HEADER_LOGIN_TOKEN );
 		
 		$this->logout();
-		$this->access = $this->is_User($getset->header("sys_username"),$getset->header("sys_password"));
+		$this->access = $this->is_User($getset->header( SYS_HEADER_LOGIN_USERNAME ),$getset->header( SYS_HEADER_LOGIN_PASSWORD ));
 		//print_r($this->access);
 	}
 	
@@ -44,12 +44,12 @@ class Users {
 		$query = "UPDATE " . DB_TABLE_USERS . " SET token = '".$token."' WHERE id = '".$id."'";
 		$this->db->query($query);
 		
-		$this->getset->setSession("sys_token",$token);
+		$this->getset->setSession(SYS_HEADER_LOGIN_TOKEN,$token);
 	}
 	
 	private function logout() {
 		if ($this->getset->header(FORM_ACTION) == FORM_ACTION_LOGOUT) {
-			$this->getset->setSession("sys_token",null);
+			$this->getset->setSession(SYS_HEADER_LOGIN_TOKEN,null);
 		}
 	}
 	

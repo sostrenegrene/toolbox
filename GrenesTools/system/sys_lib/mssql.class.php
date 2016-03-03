@@ -1,4 +1,7 @@
 <?php
+require_once __DIR__.'/QueryFactory.class.php';
+require_once __DIR__.'/InputFactory.class.php';
+
 /*
  * Created on 2006-02-21
  *
@@ -103,6 +106,14 @@
 	function close_conn() {		
 		mysqli_close($this->conn);
 	}//END function
-		 	
+		
+	function query_factory() {
+		return new QueryFactory();
+	}
+	
+	function input_factory($array=array()) {
+		return new InputFactory( $array );
+	}
+	
  }//END class 
 ?>

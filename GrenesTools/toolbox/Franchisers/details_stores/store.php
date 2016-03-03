@@ -7,15 +7,20 @@ if ($getset->header("store_dbid") > 0) {
 	$franchItem = $franchiser->get_One();
 	$storeItem = $store->get_One();
 	$posItems = $pos->get_All();
+	
+	$fEdit = $sys_menu->menuIdByName("Edit","Franchisers");
+	$sEdit = $sys_menu->menuIdByName("Edit","Stores");
+	$pEdit = $sys_menu->menuIdByName("Edit","POS");
 ?>
-<table class="inline">
+<table class="inline container">
 	<tr>
+		<td class="franchisee"></td>
 		<td>
-			<table class="franchisee">
+			<table class="stores-store container">
 				<tr>
 					<td style="width:50%;">					
 						<a href="?">Franchisee</a>
-						<?php $sys_users->hasAccess(1,"<a href=\"?\">Edit</a>"); ?>	
+						<?php $sys_users->hasAccess(1,"<a href=\"?load=".$fEdit."&id=".$franchItem['id']."\">Edit</a>"); ?>	
 					</td>
 					<td>
 						<?=$franchItem['franchiser']?><br>
@@ -27,10 +32,12 @@ if ($getset->header("store_dbid") > 0) {
 		</td>
 	</tr>
 	<tr>
+		<td class="store"></td>
 		<td>
-			<table class="store">				
+			<table class="stores-store container">				
 				<tr>
 					<td>
+						<?php $sys_users->hasAccess(1,"<a href=\"?load=".$sEdit."&id=".$storeItem['id']."\">Edit</a>"); ?><br>
 						<?=$storeItem['name']?><br>
 						<?=$storeItem['address']?><br>
 						<?=$storeItem['zipcode']?> <?=$storeItem['city']?><br>
@@ -48,9 +55,10 @@ if ($getset->header("store_dbid") > 0) {
 		</td>
 	</tr>
 	<tr>
+		<td class="economics"></td>
 		<td>
 		
-			<table class="economics">
+			<table class="stores-store container">
 				<tr>
 					<td>Organization number</td>
 					<td><?=$storeItem['organization_number']?></td>
@@ -76,8 +84,9 @@ if ($getset->header("store_dbid") > 0) {
 		</td>	
 	</tr>
 	<tr>
+		<td class="pos"></td>
 		<td>
-			<table class="pos">
+			<table class="stores-store container">
 				<tr>
 					<td>POS</td>
 					<td>Term. ID</td>
@@ -93,6 +102,9 @@ if ($getset->header("store_dbid") > 0) {
 						<a href="teamviewer://<?=$posItem['teamviewer_user']?>">TW</a>
 					</td>					
 					<td><div class="<?=$posItem['status']?>"></div></td>
+					<td>
+						<?php $sys_users->hasAccess(1,"<a href=\"?load=".$pEdit."&id=".$posItem['id']."&store_dbid=".$storeItem['id']."\">Edit</a>"); ?>
+					</td>
 				</tr>
 				
 				<?php } }//ENd foreach / if ?>

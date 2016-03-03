@@ -21,7 +21,7 @@ $storeList = $stores->get_All();
 		<td class="stores-row">
 			<!-- Remember to send franchiser_id with the edit id, so franchiser is selected  -->
 			<a href="?id=<?=$storeItem['id']?>&franchiser_id=<?=$storeItem['franchiser_id']?>">Edit</a>
-			<a href="?id=<?=$storeItem['id']?>&<?=FORM_ACTION?>=<?=FORM_ACTION_DELETE?>">Del</a>
+			<a href="?delete_id=<?=$storeItem['id']?>&<?=FORM_ACTION?>=<?=FORM_ACTION_DELETE?>">Del</a>
 		</td>
 	</tr>
 

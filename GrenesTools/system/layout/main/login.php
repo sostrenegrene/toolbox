@@ -7,8 +7,8 @@
 		<td>
 			<form method="get" action="?">
 				<input type="hidden" name="<?=FORM_ACTION?>" value="<?=FORM_ACTION_LOGIN?>">
-				<input type="text" name="sys_username" placeholder="Username" style="width:5em;">
-				<input type="text" name="sys_password" placeholder="Password" style="width:5em;">
+				<input type="text" name="<?=SYS_HEADER_LOGIN_USERNAME?>" placeholder="Username" style="width:5em;">
+				<input type="text" name="<?=SYS_HEADER_LOGIN_PASSWORD?>" placeholder="Password" style="width:5em;">
 				<input type="submit" value="OK">
 			</form>
 		</td>

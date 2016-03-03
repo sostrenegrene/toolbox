@@ -5,20 +5,35 @@ class MenuAdmin {
 	var $db;
 	var $sys_menu;
 	
+	var $input;
+	
 	function __construct($db,$sys_menu) {
 		$this->db = $db;
 		$this->sys_menu = $sys_menu;
+		
+		$this->input = $db->input_factory();
 	}
 	
-	function make_Menu($sub_id,$name,$level) {
-		$query = "INSERT INTO " . DB_TABLE_MENUS . " (sub_id,name,level) VALUES ('".$sub_id."','".$name."','".$level."')";
+	function set_Input($name,$value) {
+		$this->input->add($name,$value);
+	}
+	
+	function make_Menu() {
+		$qf = $this->db->query_factory();
+		$qf->set_InputFactory($this->input);
+		
+		$query = $qf->insert( DB_TABLE_MENUS );
 		$this->db->query($query);
 	
 		print $this->db->error();
 	}
 	
-	function update_Menu($id,$name,$level) {
-		$query = "UPDATE " . DB_TABLE_MENUS . " name = '".$name."', level = '".$level."' WHERE id = '".$id."'";
+	function update_Menu($id) {
+		$qf = $this->db->query_factory();
+		$qf->set_InputFactory($this->input);
+		$where = "id = '".$id."'";
+		$query = $qf->update( DB_TABLE_MENUS,$where );
+		
 		$this->db->query($query);
 	
 		print $this->db->error();

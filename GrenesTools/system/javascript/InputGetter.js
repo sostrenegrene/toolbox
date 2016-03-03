@@ -7,4 +7,10 @@ var InputGetter = function() {
 		});
 	}
 	
+	this.confirm = function(text,url) {
+		if (confirm(text) == true) {
+	        location.href = url;
+	    } 
+	}
+	
 }

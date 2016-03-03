@@ -1,6 +1,12 @@
 <?php
 /** Database tables
  */
+
+//System head fields
+define("SYS_HEADER_LOGIN_USERNAME","sys_username");
+define("SYS_HEADER_LOGIN_PASSWORD","sys_password");
+define("SYS_HEADER_LOGIN_TOKEN","sys_token");
+
 //System tables
 define("DB_TABLE_MENUS","toolbox_sys_menu");
 define("DB_TABLE_MODULES","toolbox_sys_modules");
@@ -21,4 +27,10 @@ define("FORM_ACTION_UPDATE","form_update");
 define("FORM_ACTION_SEARCH","form_search");
 define("FORM_ACTION_LOGIN","form_login");
 define("FORM_ACTION_LOGOUT","form_logout");
+
+/** POSMON
+ * 
+ */
+define("POSMON_TIMER_WARNING",5);
+define("POSMON_TIMER_OFFLINE",10);
 ?>

@@ -13,26 +13,28 @@ $stores = new Stores($db,$getset->header("id"));
 switch($getset->header(FORM_ACTION)) {
 	
 	case FORM_ACTION_SAVE:
-		$stores->save_Store($getset->header("franchiser_id"),
-							$getset->header("store_id"),
-							$getset->header("store_name"),
-							$getset->header("address"),
-							$getset->header("city"),
-							$getset->header("zipcode"),
-							$getset->header("store_email"),
-							$getset->header("store_phone"),
-							$getset->header("manager"),
-							$getset->header("manager_phone"),
-							$getset->header("organization_number"),
-							$getset->header("bax"),
-							$getset->header("tof"),
-							$getset->header("cvr"),
-							$getset->header("forretnings_nummer"),
-							$getset->header("country"));
+		$stores->set_Input("franchiser_id",$getset->header("franchiser_id"));
+		$stores->set_Input("store_id",$getset->header("store_id"));
+		$stores->set_Input("name",$getset->header("store_name"));
+		$stores->set_Input("address",$getset->header("address"));
+		$stores->set_Input("city",$getset->header("city"));
+		$stores->set_Input("zipcode",$getset->header("zipcode"));
+		$stores->set_Input("store_email",$getset->header("store_email"));
+		$stores->set_Input("store_phone",$getset->header("store_phone"));
+		$stores->set_Input("manager",$getset->header("manager"));
+		$stores->set_Input("manager_phone",$getset->header("manager_phone"));
+		$stores->set_Input("organization_number",$getset->header("organization_number"));
+		$stores->set_Input("bax",$getset->header("bax"));
+		$stores->set_Input("tof",$getset->header("tof"));
+		$stores->set_Input("cvr",$getset->header("cvr"));
+		$stores->set_Input("forretnings_nummer",$getset->header("forretnings_nummer"));
+		$stores->set_Input("country_id",$getset->header("country"));
+		
+		$stores->save_Store();
 		break;
 		
 	case FORM_ACTION_DELETE:
-		$stores->delete_Store();
+		$stores->delete_Store($getset->header("delete_id"));
 		break;
 	
 }

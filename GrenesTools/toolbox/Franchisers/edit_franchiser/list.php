@@ -26,7 +26,7 @@ $francList = $franc->get_All();
 		 -->
 		<td>
 			<a href="?id=<?=$francItem['id']?>">Edit</a>
-			<a href="?id=<?=$francItem['id']?>&<?=FORM_ACTION?>=<?=FORM_ACTION_DELETE?>">Del</a>
+			<a href="javascript:inget.confirm('Delete?','?delete_id=<?=$francItem['id']?>&<?=FORM_ACTION?>=<?=FORM_ACTION_DELETE?>')">Del</a>
 		</td>
 	</tr>	
 	<?php } }//ENd foreach / if?>

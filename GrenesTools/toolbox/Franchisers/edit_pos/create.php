@@ -12,6 +12,10 @@ $getset->setStandardValue("terminal_software_version",$posItem['terminal_softwar
 $getset->setStandardValue("terminal_software_registered",$posItem['terminal_software_registered']);
 $getset->setStandardValue("teamviewer_user",$posItem['teamviewer_user']);
 $getset->setStandardValue("teamviewer_pass",$posItem['teamviewer_pass']);
+$getset->setStandardValue("monitor_installed",$posItem['monitor_installed']);
+
+$monInst = array("","","");
+if ($getset->header("monitor_installed") != null) { for($i=0; $i<3; $i++) { if ($i==$getset->header("monitor_installed")) { $monInst[$i] = " selected "; } else { $monInst[$i] = ""; } } }  
 ?>
 
 <div class="admin-block-sff inline">
@@ -68,6 +72,15 @@ $getset->setStandardValue("teamviewer_pass",$posItem['teamviewer_pass']);
 			<tr>
 				<td>
 					<input type="text" name="teamviewer_pass" value="<?=$getset->header("teamviewer_pass")?>" placeholder="Teamviewer password">
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<select name="monitor_installed">
+						<option value="0" <?=$monInst[0]?> >Monitor not installed</option>
+						<option value="1" <?=$monInst[1]?> >Monitor installed - No Conn.</option>
+						<option value="2" <?=$monInst[2]?> >Monitor installed</option>						
+					</select>
 				</td>
 			</tr>
 			<tr>

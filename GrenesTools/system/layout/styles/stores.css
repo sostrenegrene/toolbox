@@ -14,15 +14,16 @@
 	color:#000;
 }
 
+.stores-store {
+	width:500px;	
+}
+
 .selected-bot {
-	border-bottom:1px solid #000;
-	text-decoration:none;
-	background-color:#eee;
+	border-bottom:1px solid #a5aac0;	
 }
 
 .selected-r {
-	border-right:1px solid #000;
-	background-color:#eee;
+	border-right:1px solid #a5aac0;
 }
 
 .border {
@@ -30,8 +31,9 @@
 }
 
 .franchisee {
-	width:500px;
-	background-color:#ffff80;	
+	width:20px;
+	background-color:#ffff80;
+			
 }
 
 .franchisee td {
@@ -40,8 +42,9 @@
 }
 
 .store {
-	width:500px;
+	width:20px;
 	background-color:#80ffff;
+	
 }
 
 .store td {
@@ -58,8 +61,9 @@
 }
 	
 .economics {
-	width:500px;
+	width:20px;
 	background-color:#7CFC00;
+	
 }
 
 .economics td {
@@ -67,8 +71,9 @@
 }
 
 .pos {
-	width:500px;
+	width:20px;
 	background-color:#f5b4b4;
+	
 }
 
 .stores-row {

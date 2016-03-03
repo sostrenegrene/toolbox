@@ -13,11 +13,17 @@ $subSelect 	= $opts['sub_menu'];
 switch($getset->header(FORM_ACTION)) {
 	
 	case FORM_ACTION_SAVE:
-		$amods->make_Module($getset->header("menu_id"), $getset->header("package"), $getset->header("module"), $getset->header("index"),$getset->header("name"));
+		$amods->set_Input("menu_id",$getset->header("menu_id"));
+		$amods->set_Input("package_folder",$getset->header("package"));
+		$amods->set_Input("module_folder",$getset->header("module"));
+		$amods->set_Input("module_index",$getset->header("index"));
+		$amods->set_Input("module_name",$getset->header("name"));
+		//$amods->make_Module($getset->header("menu_id"), $getset->header("package"), $getset->header("module"), $getset->header("index"),$getset->header("name"));
+		$amods->make_Module();
 		break;
 	
 	case FORM_ACTION_DELETE:
-		$amods->delete_Module($getset->header("id"));
+		$amods->delete_Module($getset->header("delete_id"));
 		break;
 		
 	default:

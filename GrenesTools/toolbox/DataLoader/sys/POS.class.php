@@ -22,40 +22,6 @@ class POS {
 		$this->input = $db->input_factory();
 	}
 	
-	function set_Input($name,$value) {
-		$this->input->add($name,$value);
-	}
-	
-	/** Create a new POS entry
-	 * 
-	 **/
-	private function make_POS() {
-		$qf = $this->db->query_factory();
-		
-		$qf->set_InputFactory($this->input);
-		$query = $qf->insert( TABLE_GRENES_POS );
-		
-		$this->db->query($query);
-		
-		print $this->db->error(__FUNCTION__);
-	}
-	
-	/** Updates POS entry
-	 *
-	 */
-	private function update_POS() {
-		
-		$qf = $this->db->query_factory();
-		
-		$qf->set_InputFactory($this->input);
-		$where = "id = '".$this->pos_id."'";
-		$query = $qf->update( TABLE_GRENES_POS,$where );
-		
-		$this->db->query($query);
-	
-		print $this->db->error(__FUNCTION__);
-	}
-	
 	/** Returns an empty pos entry array
 	 *  
 	 */
@@ -183,16 +149,6 @@ class POS {
 		else {
 			$this->make_POS();
 		}
-	}
-	
-	/** Delete POS entry
-	 * 
-	 */
-	function delete_POS($id) {
-		$query = "DELETE FROM " . TABLE_GRENES_POS . " WHERE id = '".$id."'";
-		$this->db->query($query);
-	
-		print $this->db->error(__FUNCTION__);
 	}
 	
 	function get_Status() {

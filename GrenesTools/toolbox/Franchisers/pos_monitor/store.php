@@ -11,14 +11,17 @@ if ($posList != null) {
 		$pos_string = "<div class=\"online-status-inactive\">".$status['total']."</div>";
 	}
 	else {
-		if ($status['offline'] > 0) {
-			$pos_string = "<div class=\"online-status-off\">".$status['offline']."</div>";
+		if ($status['warning'] > 0) {
+			$pos_string = "<div class=\"online-status-warning\">".$status['warning']."</div>";
 		}
+		elseif ($status['offline'] > 0) {
+			$pos_string = "<div class=\"online-status-off\">".$status['offline']."</div>";
+		}		
 		else {
 			$pos_string = "<div class=\"online-status-on\">".$status['total']."</div>";
 		}
 	}
-	
+
 }//ENd if
 ?>
 <div class="monitor-block-s inline">

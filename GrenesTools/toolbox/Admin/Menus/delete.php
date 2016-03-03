@@ -9,7 +9,7 @@
 			</tr>	
 			<tr>				
 				<td>
-					<select name="id">
+					<select name="delete_id">
 						<option>Select</option>
 						<?=$menuSelect?>
 					</select>
