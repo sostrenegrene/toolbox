@@ -163,7 +163,7 @@ class POS {
 		$mailer->add_recipient("Support","support@grenes.zendesk.com");
 		//$mailer->add_recipient("Support","soren.pedersen@sostrenegrene.com");
 		$mailer->message("Toolbox",$msg);
-		$mailer->send();
+		//$mailer->send();
 	}
 	
 	private function flag_POSRepport($id,$flag) {

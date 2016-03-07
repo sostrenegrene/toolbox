@@ -32,7 +32,15 @@ class QueryFactory {
 				$values .= ",";
 			}
 			$fields .= $item['name'];
-			$values .= "'".$item['value']."'";
+			
+			//This does a simple check to see if the input contains a sub query
+			//If it does, do not surround with ''
+			if (strstr($item['value'],"(SELECT")) {
+				$values .= $item['value'];
+			}
+			else {
+				$values .= "'".$item['value']."'";
+			}
 		}
 		
 		$query = "INSERT INTO " . $table . " (" . $fields . ") VALUES (" . $values . ")";

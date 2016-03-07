@@ -48,7 +48,7 @@
 }
 
 .monitor-block p {
-	text-decoration:underline;	
+	/*text-decoration:underline;*/	
 	margin:5px;
 }
 
@@ -96,8 +96,7 @@
 }
 
 .monitor-block-s table td {	
-	font-weight:none;
-	
+	font-weight:none;	
 	border:none;
 	margin:0px;
 	padding:0px;

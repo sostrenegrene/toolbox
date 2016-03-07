@@ -140,25 +140,6 @@ class Stores {
 		return $out;
 	}
 	
-	
-	function _get_CountrySelectOptions($c="") {
-		
-		$out = "";
-		$country = array("DK","NO","NL","IS");
-	
-		
-		foreach($country as $item) {
-			//Add selected to option if id matches
-			if ($item == $c) { $s = "selected"; }
-			else { $s = ""; }
-
-			$out .= "<option value=\"".$item."\" ".$s.">".$item."</option>\n";
-		}
-	
-	
-		return $out;
-	}
-	
 }
 
 ?>

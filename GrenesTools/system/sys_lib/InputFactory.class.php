@@ -8,8 +8,27 @@ class InputFactory {
 	}
 	
 	private function validate($value) {
-		if (!is_numeric($value)) { $value = htmlspecialchars($value,ENT_QUOTES); }
+		if (!is_numeric($value)) {			
+			$value = $this->specialChars($value);
+			$value = htmlspecialchars($value,ENT_QUOTES);
+		}
 	
+		return $value;
+	}
+	
+	function specialChars($value) {
+		
+		/*
+		$value = str_replace("Æ","&AElig;",$value);
+		$value = str_replace("æ","&aelig;",$value);
+		
+		$value = str_replace("å","&aring;",$value);
+		$value = str_replace("Å","&Aring;",$value);
+		
+		$value = str_replace("ø","&oslash;",$value);
+		$value = str_replace("Ø","&Oslash;",$value);	
+		*/
+		
 		return $value;
 	}
 	
