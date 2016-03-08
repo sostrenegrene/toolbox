@@ -1,7 +1,7 @@
 <?php
 /** 
  * 
- * @author Søren Pedersen
+ * @author Sï¿½ren Pedersen
  *
  * Handles all in and outputting of stores data
  *
@@ -34,26 +34,27 @@ class Stores {
 	 * 
 	 * @return array
 	 */
-	private function empty_Store() {
-		$a['id'] = "0";
-		$a['country_id'] = "";
-		$a['franchiser_id'] = "";
-		$a['store_id'] = "";
-		$a['name'] = "";
-		$a['address'] = "";
-		$a['city'] = "";
-		$a['zipcode'] = "";
-		$a['store_email'] = "";
-		$a['store_phone'] = "";
-		$a['manager'] = "";
-		$a['manager_phone'] = "";
-		$a['organization_number'] = "";
-		$a['bax'] = "";
-		$a['tof'] = "";
-		$a['cvr'] = "";
-		$a['forretnings_nummer'] = "";
+	function empty_Store() {
+		$a = $this->db->input_factory();
+		$a->add('id',"0");
+		$a->add('country_id',"");
+		$a->add('franchiser_id',"");
+		$a->add('store_id',"");
+		$a->add('name',"");
+		$a->add('address',"");
+		$a->add('city',"");
+		$a->add('zipcode',"");
+		$a->add('store_email',"");
+		$a->add('store_phone',"");
+		$a->add('manager',"");
+		$a->add('manager_phone',"");
+		$a->add('organization_number',"");
+		$a->add('bax',"");
+		$a->add('tof',"");
+		$a->add('cvr',"");
+		$a->add('forretnings_nummer',"");
 		
-		return $a;
+		return $a->to_array();
 	}
 	
 	/** Returns all stores
@@ -65,14 +66,20 @@ class Stores {
 	function get_All() {
 		 
 		if ($this->franchiser_id != 0) { 
-			$query = "SELECT * FROM ". TABLE_GRENES_STORES . " WHERE franchiser_id = '".$this->franchiser_id."' ORDER BY country_id,store_id ASC"; 
+			//$query = "SELECT * FROM ". TABLE_GRENES_STORES . " WHERE franchiser_id = '".$this->franchiser_id."' ORDER BY country_id,store_id ASC";
+			$query = "SELECT s.*,c.country FROM ". TABLE_GRENES_STORES . " AS s
+					JOIN ".TABLE_GRENES_COUNTRIES . " AS c ON c.id = s.country_id 
+					WHERE franchiser_id = '".$this->franchiser_id."' ORDER BY country_id,store_id ASC";
 		}
-		else { $query = "SELECT * FROM ". TABLE_GRENES_STORES . " ORDER BY country_id,store_id ASC"; }
+		else { $query = "SELECT s.*,c.country FROM ". TABLE_GRENES_STORES . " AS s
+				JOIN " . TABLE_GRENES_COUNTRIES . " AS c ON c.id = s.country_id
+				ORDER BY s.country_id,s.store_id ASC"; 
+		}
 	
 		$this->db->query($query);
 		$res = $this->db->get_rows();
 		
-		print $this->db->error(__FUNCTION__);
+		print $this->db->error("s".__FUNCTION__);
 		
 		return $res;
 	}
@@ -103,7 +110,9 @@ class Stores {
 	}
 	
 	function get_Search($type,$search) {
-		$query = "SELECT * FROM " . TABLE_GRENES_STORES . " WHERE ".$type." LIKE '".$search."%'";
+		$query = "SELECT s.*,c.country FROM " . TABLE_GRENES_STORES . " AS s
+				JOIN ".TABLE_GRENES_COUNTRIES." AS c ON c.id = s.country_id
+				WHERE s.".$type." LIKE '".$search."%'";
 		$res = $this->db->query($query);
 		
 		return $res;

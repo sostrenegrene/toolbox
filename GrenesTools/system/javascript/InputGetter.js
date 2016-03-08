@@ -1,8 +1,8 @@
 var InputGetter = function() {
 	
 	this.keyUp = function(id,callback) {
-		$("#"+id).keyup(function() {
-			var val = $(this).val();
+		$(id).keyup(function() {
+			var val = $(this).serialize();
 			callback(val);
 		});
 	}

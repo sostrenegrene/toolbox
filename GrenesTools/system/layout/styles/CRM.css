@@ -1,0 +1,69 @@
+@CHARSET "UTF-8";
+
+.store-container {
+	width:800px;
+	margin-left:auto;
+	margin-right:auto;	
+}
+
+.store-container td table {
+	width:100%;
+}
+
+.store-container #store th {
+	width:4em;
+	border:0px solid;
+}
+
+.store-container .store-item th {
+	width:150px;
+	font-weight:normal;
+	font-size:1em;
+}
+
+.store-container .store-item input {
+	border:1px solid #e5e5e5;
+	border-radius:5px;	
+}
+
+.store-container #store-items table table table td {
+	border-bottom:1px solid #eee;
+}
+
+/**** SEARCH ****/
+.search-table {
+	margin-left:auto;
+	margin-right:auto;
+}
+
+.search-table input {
+	font-size:1em;
+	background-color:rgba(255,255,255,0.5);
+	border:1px solid #e5e5e5;
+	border-radius:5px;
+}
+
+/**** POS ****/
+
+.pos-status {
+	width:1em;
+	height:1em;
+}
+
+/**** COLORS ******/
+
+.col-franchiser {
+	background-color:#ffff00;
+}
+
+.col-contact {
+	background-color:#00ffff;
+}
+
+.col-economics {
+	background-color:#00ff00;
+}
+
+.col-pos {
+	background-color:#ff8080;
+}

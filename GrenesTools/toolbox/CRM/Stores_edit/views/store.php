@@ -1,9 +1,9 @@
 <?php
 
 ?>
-<table>
+<table class="container">
 	<tr>
 		<th><?=$store->store("store_id")?></th>
-		<th><?=$store->store("name")?></th>
+		<td><?=$store->store("name")?></td>
 	</tr>
 </table>

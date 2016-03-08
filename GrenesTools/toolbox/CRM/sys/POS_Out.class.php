@@ -25,21 +25,23 @@ class POS {
 	/** Returns an empty pos entry array
 	 *  
 	 */
-	private function empty_POS() {
-		$a['id'] = "";
-		$a['store_id'] = "";
-		$a['store_name'] = "";
-		$a['pos_num'] = "";
-		$a['terminal_id'] = "";
-		$a['terminal_model'] = "";
-		$a['terminal_software'] = "";
-		$a['terminal_software_version'] = "";
-		$a['terminal_software_registered'] = "";
-		$a['teamviewer_user'] = "";
-		$a['teamviewer_pass'] = "";
-		$a['monitor_installed'] = "";
+	function empty_POS() {
+		$a = $this->db->input_factory();
 		
-		return $a;
+		$a->add('id',"");
+		$a->add('store_id',"");
+		$a->add('store_name',"");
+		$a->add('pos_num',"");
+		$a->add('terminal_id',"");
+		$a->add('terminal_model',"");
+		$a->add('terminal_software',"");
+		$a->add('terminal_software_version',"");
+		$a->add('terminal_software_registered',"");
+		$a->add('teamviewer_user',"");
+		$a->add('teamviewer_pass',"");
+		$a->add('monitor_installed',"");
+		
+		return $a->to_array();
 	}
 
 	/** Adds a total pos and total offline count
@@ -129,7 +131,7 @@ class POS {
 		$mailer->add_recipient("Support","support@grenes.zendesk.com");
 		//$mailer->add_recipient("Support","soren.pedersen@sostrenegrene.com");
 		$mailer->message("Toolbox",$msg);
-		$mailer->send();
+		//$mailer->send();
 	}
 	
 	private function flag_POSRepport($id,$flag) {
@@ -183,7 +185,7 @@ class POS {
 		$this->db->query($query);
 		$res = $this->db->get_rows();
 		
-		print $this->db->error(__FUNCTION__);
+		print $this->db->error("p".__FUNCTION__);
 		
 		
 		$res = $this->pos_Status($res);

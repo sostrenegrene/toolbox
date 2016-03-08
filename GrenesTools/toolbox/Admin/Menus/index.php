@@ -21,6 +21,8 @@ switch($getset->header( FORM_ACTION )) {
 		break;
 		
 	case FORM_ACTION_UPDATE:
+		$amenu->set_Input("name",$getset->header("menu_name"));
+		$amenu->set_Input("level",$getset->header("level"));
 		$amenu->update_Menu($getset->header("id"));
 		break;
 		

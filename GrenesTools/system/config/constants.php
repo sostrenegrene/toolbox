@@ -24,6 +24,7 @@ define("FORM_ACTION","form_action");
 define("FORM_ACTION_SAVE","form_save");
 define("FORM_ACTION_DELETE","form_delete");
 define("FORM_ACTION_UPDATE","form_update");
+define("FORM_ACTION_CREATE","form_create");
 define("FORM_ACTION_SEARCH","form_search");
 define("FORM_ACTION_LOGIN","form_login");
 define("FORM_ACTION_LOGOUT","form_logout");

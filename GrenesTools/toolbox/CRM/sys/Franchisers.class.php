@@ -2,7 +2,7 @@
 /** This class handles all data on direct franchiser info
  * 
  * 
- * @author Søren Pedersen
+ * @author Sï¿½ren Pedersen
  *
  */
 class Franchisers {
@@ -30,6 +30,13 @@ class Franchisers {
 	
 	function set_InputValue($name,$value) {
 		$this->inputVal->add($name, $value);
+	}
+	
+	function get_Search($franchiser) {
+		$query = "SELECT * FROM " . TABLE_GRENES_FRANCHISERS . " WHERE franchiser LIKE '%".$franchiser."%' ORDER BY franchiser";
+		$res = $this->db->query($query);
+		
+		return $res;
 	}
 	
 	/** Returns an array with all franchisers
@@ -61,7 +68,7 @@ class Franchisers {
 		return $res;
 	}
 	
-	private function empty_Franchiser() {
+	function empty_Franchiser() {
 		$ip = $this->db->input_factory();
 		$ip->add('franchiser',"");
 		$ip->add('country_id',"");
