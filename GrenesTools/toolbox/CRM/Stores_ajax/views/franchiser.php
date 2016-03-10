@@ -8,8 +8,8 @@
 			<table>
 				<tr>
 					<td>Franchiser</td>
-					<td>
-						<?=$store->franchiser("franchiser")?>
+					<td>												
+						<?=$sdl->franchiser_Select($store->franchiser("id"))?>
 					</td>
 				</tr>
 				<tr>

@@ -26,7 +26,8 @@ class StoreData {
 	}
 	
 	function franchiser($val) {
-		return $this->franchiser[$val];
+		if (isset($this->franchiser[$val])) { return $this->franchiser[$val]; }
+		else { return null; }
 	}
 	
 	function store($val) {
@@ -41,7 +42,7 @@ class StoreData {
 	
 	function pos_Count() {
 		return count($this->pos);
-	}
+	}	
 	
 }
 ?>

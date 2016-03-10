@@ -25,6 +25,8 @@
 var franchiser;
 var ajaxr = new AJAXResult();
 var inget = new InputGetter();
+var viewLoader = new ViewLoader();
+
 $(document).ready(function() {
 	
 	franchiser = new FranchiserDetails();

@@ -6,6 +6,14 @@
 	margin-right:auto;	
 }
 
+.store-container * {
+	text-align:left;	
+}
+
+.store-container:hover {
+	box-shadow: 1px 1px 1px #000;	
+}
+
 .store-container td table {
 	width:100%;
 }
@@ -21,9 +29,21 @@
 	font-size:1em;
 }
 
-.store-container .store-item input {
+.store-container input[type="text"],select {
+	width:200px;	
+}
+
+.store-container input {
 	border:1px solid #e5e5e5;
 	border-radius:5px;	
+}
+
+.store-container .pos-item input[type="text"] {
+	width:100px;
+}
+
+.store-container select {
+	width:200px;
 }
 
 .store-container #store-items table table table td {

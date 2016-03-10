@@ -1,7 +1,7 @@
 <?php
 $editor = $sys_menu->menuIdByName("Store");
 ?>
-<a href="#">
+<a href="?search=<?=$getset->header("search")?>&value=<?=$store->store("store_id")?>&<?=FORM_ACTION?>=<?=FORM_ACTION_SEARCH?>stores&exact_search=true">
 <table class="container">
 	<tr>
 		<th>
@@ -9,11 +9,7 @@ $editor = $sys_menu->menuIdByName("Store");
 		</th>
 		<td>
 			<?=$store->store("name")?>
-		</td>
-		<td>
-			<a href="?load=<?=$editor?>&id=<?=$store->store("id")?>&<?=FORM_ACTION?>=<?=FORM_ACTION_SEARCH?>">
-				<button>Save</button>
-			</a>
+		</td> 
 	</tr>
 </table>
 </a>

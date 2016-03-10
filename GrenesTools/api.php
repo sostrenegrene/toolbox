@@ -12,3 +12,5 @@ $db 	= new MS_SQL(DB_HOST, DB_USER, DB_PASS, DB_DB);
 //Data in header is store_id=int & pos_num=int
 new POS_API($db,$getset);
 ?>
+
+<?php $db->close_conn(); ?>

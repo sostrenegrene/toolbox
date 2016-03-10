@@ -7,6 +7,10 @@
 			
 			<table>
 				<tr>
+					<td>ID</td>
+					<td><?=$store->store("store_id")?></td>
+				</tr>
+				<tr>
 					<td>Store</td>
 					<td><?=$store->store("name")?></td>
 				</tr>

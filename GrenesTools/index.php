@@ -42,3 +42,5 @@ $sys_mods = new Modules($db,$getset->header("load"));
 
 <!-- INCLUDE FOOT -->
 <?php require_once 'system/layout/'.$getset->header("layout").'/foot.php'; ?>
+
+<?php $db->close_conn(); ?>

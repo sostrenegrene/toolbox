@@ -16,7 +16,7 @@ require_once __DIR__.'/InputFactory.class.php';
  	var $rows;
  	
  	function __construct($host,$user,$password,$database) { 		
-		$host = $host ."\\".$database;
+		//$host = $host ."\\".$database;
 		$logon['Database'] = $database;
 		$logon['UID'] = $user;
 		$logon['PWD'] = $password;		
@@ -104,7 +104,7 @@ require_once __DIR__.'/InputFactory.class.php';
 	
 	//CLoses the connection to the database
 	function close_conn() {		
-		mysqli_close($this->conn);
+		sqlsrv_close($this->conn);
 	}//END function
 		
 	function query_factory() {

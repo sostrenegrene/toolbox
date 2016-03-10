@@ -9,23 +9,44 @@ class StoresDataLoader {
 		
 	var $db;
 	
+	var $input;
+	
 	function __construct($db) {
 		$this->db = $db;
+		
+		$this->input = $db->input_factory();
 	}
 	
 	function country_Select($id=null) {
 		$country = new Countries($this->db);
 		
 		$res = $country->get_CountrySelectOptions($id);		
-		$res = "<select name=\"store_country_id\">".$res."</select>";
+		$res = "<select name=\"country_id\">".$res."</select>";
 		
 		return $res;
 	}
 	
-	function search_Store($type,$search) {
+	function franchiser_Select($id=null) {
+		$franc = new Franchisers($this->db);
+		$franc->set_FranchiserID($id);
+		
+		$res = $franc->get_SelectOptions();
+		$res = "<select name=\"franchiser_id\">" . $res . "</select>";
+		
+		return $res;
+	}
+	
+	
+	
+	function search_Store($type,$search,$exact=false) {
 		$stores = new Stores($this->db);
 		
-		$res = $stores->get_Search($type,$search);
+		if ( ($type != null)) {
+			if (!$exact) { $res = $stores->get_Search($type,$search); }
+			else { $res = $stores->get_FromStoreID($search); }
+		}
+		else { $res = null; }
+	
 		
 		if ($res != null) {
 			foreach($res as $store) {
@@ -107,6 +128,77 @@ class StoresDataLoader {
 		
 		return $out;
 	}
+	
+	
+	/************ INPUT **********/
+	
+	function set_Input($name,$value) {
+		$this->input->add($name,$value);
+	}
+	
+	function save_Store($id) {
+		
+		if ( ($id > 0) && ($id != null) ) {
+			$this->update_Store($id);
+		}
+		else {
+			$this->make_Store();
+		}
+	
+	}
+	
+	/** Delete store
+	 *
+	 */
+	function delete_Store($id) {
+		$query = "DELETE FROM " . TABLE_GRENES_STORES . " WHERE id = '".$id."'";
+		$this->db->query($query);
+		print $this->db->error();
+	}
+	
+	function delete_POS($id) {
+		$query = "DELETE FROM " . TABLE_GRENES_POS . " WHERE id = '".$id."'";
+		$this->db->query($query);
+		
+		print $this->db->error(__FUNCTION__);
+	}
+	
+	private function make_Store()
+	{
+	
+		$qf = $this->db->query_factory();
+		$qf->set_InputFactory($this->input);
+		$query = $qf->insert( TABLE_GRENES_STORES );
+			
+		//print $query;
+		//Exec query
+		$this->db->query($query);
+	
+		//Print errors if any
+		print $this->db->error(__FUNCTION__);
+	}
+	
+	private function update_Store($id)
+	{
+		$qf = $this->db->query_factory();
+		$qf->set_InputFactory($this->input);
+		
+		$where = "id = '".$id."'";
+		$query = $qf->update( TABLE_GRENES_STORES,$where );
+	
+		print $query;
+		
+		//Exec query
+		$this->db->query($query);
+	
+		//Print errors if any
+		print $this->db->error(__FUNCTION__);
+	}
+	
+	
+	
+	
+	
 	
 }
 ?>

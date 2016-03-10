@@ -20,8 +20,11 @@ $modPath = 'toolbox/'.$modItem['package_folder'].'/'.$modItem['module_folder'].'
 //Test for file
 //Dump err message if not found.
 if (is_file($modPath)) { require_once $modPath; }
+elseif($getset->header("phpinfo") != null) { print phpinfo(); }
 else { 
 	print "Module not found! [".$modPath."]";
 	
 }
 ?>
+
+<?php $db->close_conn(); ?>

@@ -1,7 +1,7 @@
 <?php
 /** 
  * 
- * @author Søren Pedersen
+ * @author Sï¿½ren Pedersen
  *
  * Handles all in and outputting of stores data
  *
@@ -89,8 +89,7 @@ class Stores {
 		$qf->set_InputFactory($this->input);
 		
 		$where = "id = '".$this->store_dbid."'";
-		$query = $qf->update( TABLE_GRENES_STORES,$where );
-	
+		$query = $qf->update( TABLE_GRENES_STORES,$where );	
 		
 		//Exec query
 		$this->db->query($query);

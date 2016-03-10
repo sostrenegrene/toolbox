@@ -140,19 +140,6 @@ class POS {
 		print $this->db->error();
 	}
 	
-	/** Save POS entry
-	 *
-	 */
-	function save_POS() {
-		
-		if ($this->pos_id != 0) {
-			$this->update_POS();
-		}
-		else {
-			$this->make_POS();
-		}
-	}
-	
 	function get_Status() {
 		return $this->current_status;
 	}
@@ -207,6 +194,53 @@ class POS {
 		return $res;
 	}
 
+	/** Save POS entry
+	 *
+	 */
+	function save_POS() {
+	
+		if ($this->pos_id != 0) {
+			$this->update_POS();
+		}
+		else {
+			$this->make_POS();
+		}
+	}
+	
+	function set_Input($name,$value) {
+		$this->input->add($name,$value);
+	}
+	
+	/** Create a new POS entry
+	 *
+	 **/
+	private function make_POS() {
+		$qf = $this->db->query_factory();
+	
+		$qf->set_InputFactory($this->input);
+		$query = $qf->insert( TABLE_GRENES_POS );
+	
+		$this->db->query($query);
+	
+		print $this->db->error(__FUNCTION__);
+	}
+	
+	/** Updates POS entry
+	 *
+	 */
+	private function update_POS() {
+	
+		$qf = $this->db->query_factory();
+	
+		$qf->set_InputFactory($this->input);
+		$where = "id = '".$this->pos_id."'";
+		$query = $qf->update( TABLE_GRENES_POS,$where );
+	
+		$this->db->query($query);
+	
+		print $this->db->error(__FUNCTION__);
+	}
+	
 	
 }
 

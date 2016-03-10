@@ -26,6 +26,10 @@ class Stores {
 		$this->input = $db->input_factory();
 	}
 	
+	function set_dbID($id) {
+		$this->store_dbid = $db;
+	}
+	
 	function set_Input($name,$value) {
 		$this->input->add($name,$value);
 	}
@@ -92,10 +96,14 @@ class Stores {
 	 */
 	function get_One($store_id=null) {
 		if ($store_id != null) {
-			$query = "SELECT * FROM ". TABLE_GRENES_STORES . " WHERE store_id = '".$store_id."'";
+			$query = "SELECT s.*,c.country FROM " . TABLE_GRENES_STORES . " AS s
+						JOIN ".TABLE_GRENES_COUNTRIES." AS c ON c.id = s.country_id
+						WHERE s.id = '".$store_id."'";
 		}
 		else {
-			$query = "SELECT * FROM ". TABLE_GRENES_STORES . " WHERE id = '".$this->store_dbid."'";
+			$query = "SELECT s.*,c.country FROM " . TABLE_GRENES_STORES . " AS s
+						JOIN ".TABLE_GRENES_COUNTRIES." AS c ON c.id = s.country_id
+						WHERE s.id = '".$this->store_dbid."'";
 		}
 		
 		$this->db->query($query);
@@ -114,6 +122,17 @@ class Stores {
 				JOIN ".TABLE_GRENES_COUNTRIES." AS c ON c.id = s.country_id
 				WHERE s.".$type." LIKE '".$search."%'";
 		$res = $this->db->query($query);
+		
+		print $this->db->error(__FUNCTION__);
+		
+		return $res;
+	}
+	
+	function get_FromStoreID($store_id) {
+		$query = "SELECT * FROM " . TABLE_GRENES_STORES . " WHERE store_id = '".$store_id."'";
+		$res = $this->db->query($query);
+		
+		print $this->db->error(__FUNCTION__);
 		
 		return $res;
 	}
@@ -150,5 +169,4 @@ class Stores {
 	}
 	
 }
-
 ?>
