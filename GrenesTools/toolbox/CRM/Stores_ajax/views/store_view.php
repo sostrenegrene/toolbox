@@ -1,4 +1,4 @@
-<?php $deleteLink = "?".FORM_ACTION . "=" . FORM_ACTION_DELETE . "_store&id=" . $store->store("id"); ?>
+<?php $deleteLink = "?".FORM_ACTION . "=" . FORM_ACTION_DELETE . "_store&id=" . $store->get("id"); ?>
 <table class="store-container container">
 	<tr>
 		<td id="store">
@@ -13,13 +13,13 @@
 			<input type="hidden" name="search" value="<?=$getset->header("search")?>">
 			<input type="hidden" name="value" value="<?=$getset->header("value")?>">
 			<input type="hidden" name="exact_search" value="<?=$getset->header("exact_search")?>">
-			<input type="hidden" name="id" value="<?=$store->store("id")?>">			
+			<input type="hidden" name="id" value="<?=$store->get("id")?>">			
 			
 				<table>
 					<tr>
 						<td>
-							<input type="submit" value="Save">
-							<a href="javascript:inget.confirm('Delete?','<?=$deleteLink?>')">Delete</a>
+							<?$sys_users->hasAccess("User","<input type=\"submit\" value=\"Save\">")?>
+							<?$sys_users->hasAccess("Admin","<a href=\"javascript:inget.confirm('Delete?','".$deleteLink."')\">Delete</a>")?>							
 						</td>
 					</tr> 
 					<tr>

@@ -1,4 +1,4 @@
-<div class="admin-block inline">
+<div class="container">
 	<form method="get" action="?">
 	<input type="hidden" name="<?=FORM_ACTION?>" value="<?=FORM_ACTION_SAVE?>"> 
 		<table>

@@ -4,8 +4,8 @@ require_once 'system/sys_lib/getset.php';
 
 require_once 'system/sys_lib/mssql.class.php';
 
-require_once 'system/includes/Menus.class.php';
-require_once 'system/includes/Modules.class.php';
+require_once 'system/includes/system/Menus.class.php';
+require_once 'system/includes/system/Modules.class.php';
 
 $getset = new GetSet();
 $db 	= new MS_SQL(DB_HOST, DB_USER, DB_PASS, DB_DB);

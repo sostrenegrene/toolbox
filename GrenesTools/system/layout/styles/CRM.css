@@ -23,6 +23,10 @@
 	border:0px solid;
 }
 
+.store-container .store-item {
+	width:100%;
+}
+
 .store-container .store-item th {
 	width:150px;
 	font-weight:normal;

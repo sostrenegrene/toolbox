@@ -92,5 +92,12 @@ class InputFactory {
 		
 		return $out;
 	}
+	
+	function value($name) {
+		$s = $this->to_array();
+		
+		if ($this->find($name) != null) { return $s[$name]; }
+		else { return null; }
+	}
 }
 ?>

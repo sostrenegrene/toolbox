@@ -1,5 +1,4 @@
 <?php
-$pos = new POS($db,$getset->header("id"));
 
 $pos->set_Input("store_id",$getset->header("store_dbid"));
 $pos->set_Input("pos_num",$getset->header("pos_num"));
@@ -12,5 +11,5 @@ $pos->set_Input("terminal_software_version",$getset->header("terminal_software_v
 $pos->set_Input("terminal_software_registered",$getset->header("terminal_software_registered"));
 $pos->set_Input("monitor_installed",$getset->header("monitor_installed"));
 
-$pos->save_POS();
+if ($sys_users->hasAccess("User")) { $pos->save_POS($getset->header("id")); }
 ?>

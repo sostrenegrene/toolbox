@@ -1,4 +1,4 @@
-<div class="admin-block inline">
+<div class="container">
 <p>Delete</p>
 	<form method="get" action="?">
 	<input type="hidden" name="<?=FORM_ACTION?>" value="<?=FORM_ACTION_DELETE?>">
@@ -29,7 +29,7 @@
 			</tr>	
 			<tr>			
 				<td>
-					<select name="id">
+					<select name="delete_id">
 						<option>Select</option>
 						<?=$subSelect?>
 					</select>

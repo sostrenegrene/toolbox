@@ -1,4 +1,4 @@
-<div class="admin-block inline">
+<div class="container">
 <?php 
 //Load main menu items
 $mainItems = $sys_menu->menu();
@@ -19,20 +19,20 @@ foreach($mainItems as $mainItem) {
 		<td></td>	
 	</tr>
 	<tr>
-		<td>
+		<td class="container">
 			<?php //Check if any mods are loaded
 				if ($tmods != null) {
 					//Get next mod
 					foreach($tmods as $tmpMod) {
 						print $tmpMod['module_name']."<br>";
 						print "<i>".$tmpMod['module_folder']."/".$tmpMod['module_index']."</i>";
-						print "<a href=\"?".FORM_ACTION."=".FORM_ACTION_DELETE."&delete_id=".$tmpMod['id']."\">Delete</a>";
+						print "<a href=\"?".FORM_ACTION."=".FORM_ACTION_DELETE."&delete_id=".$tmpMod['id']."\">[Delete]</a>";
 						print "<br>";
 					}
 				}
 			?>
 		</td>
-		<td>				
+		<td class="container">				
 			<?php 
 				if ($subm != null) { 
 					foreach($subm as $subItem) {
@@ -45,7 +45,7 @@ foreach($mainItems as $mainItem) {
 							foreach($tmods as $tmpMod) {
 								print $tmpMod['module_name']."<br>";
 								print "<i>".$tmpMod['module_folder']."/".$tmpMod['module_index']."</i>";
-								print "<a href=\"?".FORM_ACTION."=".FORM_ACTION_DELETE."&id=".$tmpMod['id']."\">Delete</a>";
+								print "<a href=\"?".FORM_ACTION."=".FORM_ACTION_DELETE."&delete_id=".$tmpMod['id']."\">[Delete]</a>";
 								print "<br>";
 							} 
 						}

@@ -11,6 +11,7 @@ define("SYS_HEADER_LOGIN_TOKEN","sys_token");
 define("DB_TABLE_MENUS","toolbox_sys_menu");
 define("DB_TABLE_MODULES","toolbox_sys_modules");
 define("DB_TABLE_USERS","toolbox_sys_users");
+define("DB_TABLE_SETTINGS","toolbox_sys_settings");
 
 //Module tables
 define("TABLE_GRENES_COUNTRIES","grenes_countries");

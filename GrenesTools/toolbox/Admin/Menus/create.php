@@ -1,4 +1,4 @@
-<div class="admin-block inline">
+<div class="container">
 <p>Create</p>
 	<form method="get" action="?">
 	<input type="hidden" name="<?=FORM_ACTION?>" value="<?=FORM_ACTION_SAVE?>">
@@ -15,6 +15,9 @@
 				<td>
 					<select name="level">
 						<option value="0">0</option>
+						<?php foreach ($settings->group_to_array("access_level") as $level) { ?>
+							<option value="<?=$level['value']?>"><?=$level['name']?></option>
+						<?php } ?>
 					</select>
 				</td>
 				<td class="btn-save">
@@ -44,6 +47,9 @@
 				<td>
 					<select name="level">
 						<option value="0">0</option>
+						<?php foreach ($settings->group_to_array("access_level") as $level) { ?>
+							<option value="<?=$level['value']?>"><?=$level['name']?></option>
+						<?php } ?>
 					</select>
 				</td>
 				<td class="btn-save">
