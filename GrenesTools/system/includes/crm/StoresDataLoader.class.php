@@ -7,6 +7,8 @@ require_once 'DataStores/StoreData.class.php';
 require_once 'DataStores/FranchiserData.class.php';
 require_once 'DataStores/POSData.class.php';
 
+require_once 'MessageFactory.class.php';
+
 class StoresDataLoader {	
 		
 	var $db;
@@ -64,7 +66,7 @@ class StoresDataLoader {
 				
 				$f = $this->franchisers->get();
 				$fobj = new FranchiserData( $f[0] );
-				$pobj = new POSData( $this->pos->get() );
+				$pobj = new POSData( $this->pos->get(),$store->get("store_id") );
 				
 				$store->add_Franchiser($fobj);
 				$store->add_POS($pobj);

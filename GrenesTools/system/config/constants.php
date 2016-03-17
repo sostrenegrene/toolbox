@@ -33,6 +33,8 @@ define("FORM_ACTION_LOGOUT","form_logout");
 /** POSMON
  * 
  */
-define("POSMON_TIMER_WARNING",5);
-define("POSMON_TIMER_OFFLINE",10);
+//define("POSMON_TIMER_WARNING",5);
+define("POSMON_TIMER_WARNING",1);
+//define("POSMON_TIMER_OFFLINE",10);
+define("POSMON_TIMER_OFFLINE",2);
 ?>

@@ -1,9 +1,5 @@
 <?php
-require_once __DIR__.'/../sys/Messages.class.php';
-
 $stores = new StoresDataLoader($db);
-$messages = new Messages();
-
 
 $sList = $stores->get("store_id","");
 //print_r($sList);
@@ -41,10 +37,13 @@ $sList = $stores->get("store_id","");
 }
 </style>
 
-<?php foreach($sList as $store) { require 'pos.php'; } ?>
+<?php 
+$factories = new MessageFactory();
+foreach($sList as $store) {	
+	$factories->add_Factory($store->messages());
+	
+	require 'pos.php'; 
+} 
 
-<?php if ($messages->hasMessages()) { ?>
-	<div class="streamer container">
-		<?php require_once 'messages.php'; ?>
-	</div>
-<?php }//ENd if?>
+require_once 'messages.php';
+?>
