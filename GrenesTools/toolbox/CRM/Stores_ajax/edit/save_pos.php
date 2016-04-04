@@ -9,7 +9,9 @@ $pos->set_Input("terminal_model",$getset->header("terminal_model"));
 $pos->set_Input("terminal_software",$getset->header("terminal_software"));
 $pos->set_Input("terminal_software_version",$getset->header("terminal_software_version"));
 $pos->set_Input("terminal_software_registered",$getset->header("terminal_software_registered"));
-$pos->set_Input("monitor_installed",$getset->header("monitor_installed"));
+$pos->set_Input("monitor_note",$getset->header("monitor_note"));
+$pos->set_Input("pos_note",$getset->header("pos_note"));
+$pos->set_Input("terminal_note",$getset->header("terminal_note"));
 
 if ($sys_users->hasAccess("User")) { $pos->save_POS($getset->header("id")); }
 ?>

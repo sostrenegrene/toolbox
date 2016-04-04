@@ -15,7 +15,9 @@ class StoreData {
 		
 		$this->messages = new MessageFactory();		
 		
-		$title = $store['store_id']."-".$store['name'];
+		if (!empty($store)) { $title = $store['store_id']."-".$store['name']; }
+		else { $title = null; }
+		
 		$this->messages->title($title);
 		$this->messages->type("offline");
 	}

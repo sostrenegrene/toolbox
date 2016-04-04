@@ -114,11 +114,16 @@ class Users {
 	}
 	
 	function hasAccess($min_level,$print_str=null) {
+		$out = false;
+		
 		if ($this->level() >= $this->get_Level($min_level)) { 
 			if ($print_str != null) { print $print_str; }
-			return true; 
+			
+			$out = true; 
 		}
-		else { return false; }
+		else { $out = false; }
+		
+		if ($print_str == null) { return $out; }		
 	}
 	
 	function username() {

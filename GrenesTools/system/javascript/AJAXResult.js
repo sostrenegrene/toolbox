@@ -5,16 +5,15 @@
 
 var AJAXResult = function() {
 	
-	var ajax_interface = "./ajax.php";
-	
 	var error = function(err) {
 		console.log(err);
 	}
 	
 	var query = function(url_values,callback) {
 		console.log("Query");
+		
 		$.ajax({
-			   url: ajax_interface + "?"+ url_values,
+			   url: url_values,
 			   data: {
 			      format: 'json'
 			   },

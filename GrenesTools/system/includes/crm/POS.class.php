@@ -15,6 +15,8 @@ class POS {
 	function __construct($db) {
 		$this->db = $db;
 		$this->input = $db->input_factory();
+		
+		$this->set_Inactive();
 	}
 
 	function reset() {
@@ -30,6 +32,16 @@ class POS {
 		$out .= "</tr>\r\n";
 		
 		return $out;
+	}
+	
+	/** Will set POS with too long timeouts as inactive
+	 * 
+	 */
+	private function set_Inactive() {
+		$query = "UPDATE " . TABLE_GRENES_POS . " SET pos_online = NULL, inactive = '1' WHERE DATEDIFF(SECOND,pos_online,GETDATE()) > " . POSMON_TIMER_INACTIVE_TIMEOUT;
+		$this->db->query($query);
+		
+		print $this->db->error();
 	}
 	
 	private function send_MailWarn($message) {
@@ -93,7 +105,8 @@ class POS {
 	
 	function get() {
 		$query = "SELECT *,CONVERT(varchar,pos_online,120) AS pos_response, 
-						DATEDIFF(MINUTE,pos_online,GETDATE()) AS pos_timeout 
+						DATEDIFF(MINUTE,pos_online,GETDATE()) AS pos_timeout,
+						DATEDIFF(SECOND,pos_online,GETDATE()) AS pos_timeout_seconds
 						FROM " . TABLE_GRENES_POS . $this->get_Search();
 		$this->db->query($query);
 		$res = $this->db->get_rows();
@@ -150,7 +163,10 @@ class POS {
 		print $this->db->error(__FUNCTION__);
 	}
 	
-	
+	function delete_POS($id) {
+		$query = "DELETE FROM " . TABLE_GRENES_POS . " WHERE id = '".$id."'";
+		$this->db->query($query);
+	}
 }
 
 ?>

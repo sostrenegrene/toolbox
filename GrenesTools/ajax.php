@@ -7,6 +7,8 @@ require_once 'system/sys_lib/mssql.class.php';
 require_once 'system/includes/system/Menus.class.php';
 require_once 'system/includes/system/Modules.class.php';
 
+require_once 'system/includes/crm/StoresDataLoader.class.php';
+
 $getset = new GetSet();
 $db 	= new MS_SQL(DB_HOST, DB_USER, DB_PASS, DB_DB);
 
@@ -22,7 +24,7 @@ $modPath = 'toolbox/'.$modItem['package_folder'].'/'.$modItem['module_folder'].'
 if (is_file($modPath)) { require_once $modPath; }
 elseif($getset->header("phpinfo") != null) { print phpinfo(); }
 else { 
-	print "Module not found! [".$modPath."]";
+	print "Module not found![".$getset->header("load")."][".$modPath."]";
 	
 }
 ?>

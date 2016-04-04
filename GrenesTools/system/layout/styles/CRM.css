@@ -1,7 +1,7 @@
 @CHARSET "UTF-8";
 
 .store-container {
-	width:800px;
+	width:50%;
 	margin-left:auto;
 	margin-right:auto;	
 }
@@ -34,7 +34,7 @@
 }
 
 .store-container input[type="text"],select {
-	width:200px;	
+	/* width:200px; */	
 }
 
 .store-container input {
@@ -43,7 +43,7 @@
 }
 
 .store-container .pos-item input[type="text"] {
-	width:100px;
+	/* width:100px; */
 }
 
 .store-container select {
@@ -52,6 +52,11 @@
 
 .store-container #store-items table table table td {
 	border-bottom:1px solid #eee;
+}
+
+.store-item .small-title {
+	font-size:0.8em;
+	
 }
 
 /**** SEARCH ****/

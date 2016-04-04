@@ -30,8 +30,13 @@ $getset->setSession("layout",$getset->header("layout"));
 $sys_users 	= new Users($db,$getset,$levels);
 $sys_menu 	= new Menus($db,$sys_users->level());
 $getset->setStandardValue("load", $sys_menu->menuIdByName("CRM"));
-$getset->setSession("load",$getset->header("load"));
 
+//Test if string has been sent as load value
+//fint id of load if string
+if (!is_numeric($getset->header("load"))) { $load_id = $sys_menu->menuIdByName($getset->header("load")); }
+else { $load_id = $getset->header("load"); }
+
+$getset->setSession("load",$load_id);
 $sys_mods = new Modules($db,$getset->header("load"));
 ?>
 

@@ -30,11 +30,18 @@ define("FORM_ACTION_SEARCH","form_search");
 define("FORM_ACTION_LOGIN","form_login");
 define("FORM_ACTION_LOGOUT","form_logout");
 
+/** OAuth & Firmafon API
+ */
+define("APPLICATION_ID","26e6e84ff4cdf32055a6c31e7e81c9a2f47b322c5d3e31e3c81e2998277d724d");
+define("APPLICATION_SECRET","dba9353aa52b0343ff0260ac6a0766ec5b0d06f66c7605fc34a4f1c6a5853d83");
+define("FIRMAFON_API_URL","https://app.firmafon.dk/api/v2");
+define("FIRMAFON_CALLBACK_URL","http://beta.pos.grenes.dk/auth.php");
+
 /** POSMON
  * 
  */
-//define("POSMON_TIMER_WARNING",5);
-define("POSMON_TIMER_WARNING",1);
-//define("POSMON_TIMER_OFFLINE",10);
-define("POSMON_TIMER_OFFLINE",2);
+define("POSMON_TIMER_WARNING", (1 * 60) );
+define("POSMON_TIMER_OFFLINE", (2 * 60) );
+//define("POSMON_TIMER_INACTIVE_TIMEOUT", (2880 * 60) );//2 Days
+define("POSMON_TIMER_INACTIVE_TIMEOUT", (3 * 60) );//2 Days
 ?>

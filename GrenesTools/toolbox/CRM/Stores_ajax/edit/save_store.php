@@ -23,5 +23,8 @@ $stores->set_Input("tof",$getset->header("tof"));
 $stores->set_Input("cvr",$getset->header("cvr"));
 $stores->set_Input("forretnings_nummer",$getset->header("forretnings_nummer"));
 
+$stores->set_Input("meraki_url",$getset->header("meraki_url"));
+$stores->set_Input("monitor",$getset->header("monitor"));
+
 if ($sys_users->hasAccess("User")) {  $stores->save_Store( $getset->header("id") ); }
 ?>

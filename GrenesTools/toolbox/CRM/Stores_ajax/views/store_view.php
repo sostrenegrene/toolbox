@@ -1,4 +1,4 @@
-<?php $deleteLink = "?".FORM_ACTION . "=" . FORM_ACTION_DELETE . "_store&id=" . $store->get("id"); ?>
+<?php $deleteLink = "?".FORM_ACTION . "=" . FORM_ACTION_DELETE . "_store&delete_id=" . $store->get("id"); ?>
 <table class="store-container container">
 	<tr>
 		<td id="store">
@@ -18,8 +18,7 @@
 				<table>
 					<tr>
 						<td>
-							<?$sys_users->hasAccess("User","<input type=\"submit\" value=\"Save\">")?>
-							<?$sys_users->hasAccess("Admin","<a href=\"javascript:inget.confirm('Delete?','".$deleteLink."')\">Delete</a>")?>							
+							<?php require __DIR__.'/buttons.php';?>		
 						</td>
 					</tr> 
 					<tr>

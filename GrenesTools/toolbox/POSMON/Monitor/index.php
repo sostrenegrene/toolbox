@@ -35,14 +35,26 @@ $sList = $stores->get("store_id","");
 	margin:0px;
 	padding:0px;
 }
+
+.streamer th {
+	font-size:1.5em;
+	color: #fff;
+}
+
+.streamer td {
+	font-size:1.2em;
+	border-bottom:1px solid #eee;
+}
 </style>
 
 <?php 
 $factories = new MessageFactory();
 foreach($sList as $store) {	
-	$factories->add_Factory($store->messages());
 	
-	require 'pos.php'; 
+	if ( ($store->get("monitor") != null) && ($store->get("monitor") > 0)) {
+		$factories->add_Factory($store->messages());
+		require 'pos.php';
+	}
 } 
 
 require_once 'messages.php';

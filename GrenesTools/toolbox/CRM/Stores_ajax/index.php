@@ -21,13 +21,13 @@ switch($getset->header(FORM_ACTION)) {
 		break;
 		
 	case FORM_ACTION_DELETE."_store":
-		$stores->delete_Store($getset->header("id"));
+		$stores->delete_Store($getset->header("delete_id"));
 		$result = $sdl->get( $getset->header("search"), $getset->header("value"),$getset->header("exact_search") );
 		$result = null;
 		break;
 		
 	case FORM_ACTION_DELETE."_pos":
-		$pos->delete_POS($getset->header("id"));
+		$pos->delete_POS($getset->header("delete_id"));
 		$result = $sdl->get( $getset->header("search"), $getset->header("value"),$getset->header("exact_search") );		
 		break;
 		

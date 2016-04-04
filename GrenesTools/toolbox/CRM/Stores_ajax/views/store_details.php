@@ -5,22 +5,42 @@
 			<th class="col-contact"></th>
 			<td>
 				
-				<table class="store-item">
+				<table>
 					<tr>
-						<th>ID</th>
 						<td>
-							<input type="text" name="store_id" value="<?=$store->get("store_id")?>">
+				
+							<table class="store-item">
+								<tr>
+									<th>ID</th>
+									<td>
+										<input type="text" name="store_id" value="<?=$store->get("store_id")?>">
+									</td>
+								</tr>
+								<tr>
+									<th>Store</th>
+									<td>
+										<input type="text" name="name" value="<?=$store->get("name")?>">
+									</td>
+								</tr>
+								<tr>
+									<td>Country</td>
+									<td><?=$sdl->country_Select($store->get("country_id"))?></td>
+								</tr>
+							</table>
+							
 						</td>
-					</tr>
-					<tr>
-						<th>Store</th>
 						<td>
-							<input type="text" name="name" value="<?=$store->get("name")?>">
+							
+							<table class="store-item">
+								<tr>
+									<th>Meraki URL</th>
+									<td>
+										<input type="text" name="meraki_url" value="<?=$store->get("meraki_url")?>">										
+									</td>
+								</tr>
+							</table>
+							
 						</td>
-					</tr>
-					<tr>
-						<td>Country</td>
-						<td><?=$sdl->country_Select($store->get("country_id"))?></td>
 					</tr>
 				</table>
 				

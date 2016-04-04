@@ -54,19 +54,33 @@ class POSData {
 		
 	}
 	
+	private function is_Unknown($pos) {
+		return ( ($pos['pos_timeout_seconds'] == null) && ($pos['inactive'] == null) );
+	}
+	
+	private function is_Inactive($pos) {
+		return ( ($pos['pos_timeout_seconds'] == null) && ( $pos['inactive'] == 1 ) );
+	}
+	
 	private function set_POSStatus($pos) {
 			
-		if ($pos['pos_timeout'] == null) {
+		if ( $this->is_Unknown($pos) ) {
 		
 			//Remove it from total count
 			//$this->current_status['total'] -= 1;
 			$this->set_Current("total", -1);
-			//Set as inactive
+			//Set as unknown
+			$pos['status'] = "unknown";
+		}
+		elseif ( $this->is_Inactive($pos) ) {
+			//Set as unknown
+			$this->set_Current("total", -1);
+			$this->set_Current("inactive", 1);
 			$pos['status'] = "inactive";
 		}
 		else {
 		
-			if (POSMON_TIMER_OFFLINE < $pos['pos_timeout']) { 
+			if (POSMON_TIMER_OFFLINE < $pos['pos_timeout_seconds']) { 
 					
 					//Add to offline count
 					//$this->current_status['offline'] += 1;
@@ -75,7 +89,7 @@ class POSData {
 					$pos['status'] = "offline";
 					
 			}
-			elseif (POSMON_TIMER_WARNING < $pos['pos_timeout']) {
+			elseif (POSMON_TIMER_WARNING < $pos['pos_timeout_seconds']) {
 					
 					$pos['status'] = "warning";
 					//$this->current_status['warning'] += 1;
@@ -100,7 +114,9 @@ class POSData {
 		$msg = "";
 		if ($pos['status'] == "offline") {					
 			$msg .= "POS: " . $pos['pos_num'] . " - No response for: ".$pos['pos_timeout']." minutes";			
-		
+			
+			if ($pos['notes'] != null) { $msg .= "<br>" . $pos['notes']; }
+			
 			$this->msg_handler->add($msg);
 		}
 		
@@ -117,6 +133,7 @@ class POSData {
 		//reset offline count
 		$this->set_Current("offline", 0);
 		$this->set_Current("warning", 0);
+		$this->set_Current("inactive", 0);		
 		
 		$sendWarn = false;//If true sends a warning mail
 		$warnMessage = "";//Message to send on warning
