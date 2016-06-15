@@ -15,14 +15,14 @@ class Modules {
 	}
 	
 	private function fetch_Modules() {
-		$query = "SELECT * FROM " . DB_TABLE_MODULES . " WHERE menu_id = '".$this->menu_id."'";
+		$query = "SELECT * FROM " . DB_SYS_MODULES . " WHERE menu_id = '".$this->menu_id."'";
 		$this->db->query($query);
 		
 		$this->modules = $this->db->get_rows();
 	}
 	
 	function get_FromId($id) {
-		$query = "SELECT * FROM " . DB_TABLE_MODULES . " WHERE id = '".$id."'";
+		$query = "SELECT * FROM " . DB_SYS_MODULES . " WHERE id = '".$id."'";
 		$this->db->query($query);
 		$res = $this->db->get_rows();
 		
@@ -34,7 +34,7 @@ class Modules {
 	}
 	
 	function get_Unassigned($name) {
-		$query = "SELECT * FROM " . DB_TABLE_MODULES . " WHERE module_name = '".$name."'";
+		$query = "SELECT * FROM " . DB_SYS_MODULES . " WHERE module_name = '".$name."'";
 		$this->db->query($query);
 		$res = $this->db->get_rows();
 		

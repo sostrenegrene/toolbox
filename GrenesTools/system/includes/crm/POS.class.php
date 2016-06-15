@@ -13,50 +13,36 @@ class POS {
 	 * @param int $store_dbid
 	 */
 	function __construct($db) {
-		$this->db = $db;
-		$this->input = $db->input_factory();
+		$this->db 		= $db;
+		$this->input 	= $db->input_factory();
 		
-		$this->set_Inactive();
+		//$this->set_Inactive();
 	}
 
+	/** Reset all data input
+	 * 
+	 */
 	function reset() {
 		$this->input = $this->db->input_factory();
-	}
-	
-	private function make_WarnMessage($pos) {
-		$out = "<tr>\r\n";
-		$out .= "<td>Store</td><td>".$pos['store_id']."</td>\r\n";
-		$out .= "<td>POS</td><td>".$pos['pos_num']."</td>\r\n";
-		$out .= "<td>Last seen</td><td>".$pos['pos_online']."</td>\r\n";
-		$out .= "<td>Offline</td><td>".$pos['online_minute']." minutes</td>\r\n";
-		$out .= "</tr>\r\n";
-		
-		return $out;
 	}
 	
 	/** Will set POS with too long timeouts as inactive
 	 * 
 	 */
 	private function set_Inactive() {
-		$query = "UPDATE " . TABLE_GRENES_POS . " SET pos_online = NULL, inactive = '1' WHERE DATEDIFF(SECOND,pos_online,GETDATE()) > " . POSMON_TIMER_INACTIVE_TIMEOUT;
+		$query = "UPDATE " . DB_GRENES_POS . " SET pos_online = NULL, activity = '1' WHERE DATEDIFF(SECOND,pos_online,GETDATE()) > " . POSMON_TIMER_INACTIVE_TIMEOUT;
 		$this->db->query($query);
 		
 		print $this->db->error();
 	}
 	
-	private function send_MailWarn($message) {
-		$mailer = new SendMail();
-		$msg = "<p>Toolbox_Report</p>\r\n";
-		$msg .= $message ."\r\n";
-		
-		$mailer->add_recipient("Support","support@grenes.zendesk.com");
-		//$mailer->add_recipient("Support","soren.pedersen@sostrenegrene.com");
-		$mailer->message("Toolbox",$msg);
-		//$mailer->send();
-	}
-	
-	private function flag_POSRepport($id,$flag) {
-		$query = "UPDATE " . TABLE_GRENES_POS . " SET report_flag = '".$flag."' WHERE id = '".$id."'";
+	/** Flag POS as "mail repport is sent"
+	 * 
+	 * @param int $id
+	 * @param int $flag 0/1 (false/true)
+	 */
+	function flag_POSRepport($id,$flag) {
+		$query = "UPDATE " . DB_GRENES_POS . " SET report_flag = '".$flag."' WHERE id = '".$id."'";
 		$this->db->query($query);
 		print $this->db->error();
 	}
@@ -76,7 +62,7 @@ class POS {
 		if ($this->input->value("search") != null) {
 			//if exact match exist and is true
 			if ( ($this->input->value("exact") != null) && ($this->input->value("exact") == true) ) {
-				//Set wehere ==
+				//Set where ==
 				$where = " WHERE ".$this->input->value("search")." = '".$this->input->value("value")."'";
 			}
 			else {
@@ -95,7 +81,7 @@ class POS {
 	 *
 	 * @param string $search
 	 * @param string $value
-	 * @param bool $exact
+	 * @param boolean $exact
 	 */
 	function search($search,$value,$exact) {
 		$this->set_Input("search", $search);
@@ -105,13 +91,19 @@ class POS {
 	
 	function get() {
 		$query = "SELECT *,CONVERT(varchar,pos_online,120) AS pos_response, 
+						DATEDIFF(HOUR,pos_online,GETDATE()) AS pos_timeout_hour,
 						DATEDIFF(MINUTE,pos_online,GETDATE()) AS pos_timeout,
 						DATEDIFF(SECOND,pos_online,GETDATE()) AS pos_timeout_seconds
-						FROM " . TABLE_GRENES_POS . $this->get_Search();
+						FROM " . DB_GRENES_POS . $this->get_Search();
+		
 		$this->db->query($query);
 		$res = $this->db->get_rows();
 		
 		print $this->db->error(__FUNCTION__);
+		
+		$status = new POSStatus($this->db, $res);		
+		$res = $status->get();		
+		$res['total'] = $status->total();
 		
 		return $res;
 	}
@@ -140,7 +132,7 @@ class POS {
 		$qf = $this->db->query_factory();
 	
 		$qf->set_InputFactory($this->input);
-		$query = $qf->insert( TABLE_GRENES_POS );
+		$query = $qf->insert( DB_GRENES_POS );
 	
 		$this->db->query($query);
 	
@@ -156,7 +148,7 @@ class POS {
 	
 		$qf->set_InputFactory($this->input);
 		$where = "id = '".$id."'";
-		$query = $qf->update( TABLE_GRENES_POS,$where );
+		$query = $qf->update( DB_GRENES_POS,$where );
 	
 		$this->db->query($query);
 	
@@ -164,9 +156,8 @@ class POS {
 	}
 	
 	function delete_POS($id) {
-		$query = "DELETE FROM " . TABLE_GRENES_POS . " WHERE id = '".$id."'";
+		$query = "DELETE FROM " . DB_GRENES_POS . " WHERE id = '".$id."'";
 		$this->db->query($query);
 	}
 }
-
 ?>

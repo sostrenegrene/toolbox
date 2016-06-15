@@ -25,6 +25,7 @@ class QueryFactory {
 		$fields = "";
 		$values = "";
 		foreach($this->items->get() as $i=>$item) {
+			//print_r($item);
 			//If more than one item exist
 			//Add delimiter "," for each iteam in query
 			if ($i>0) {
@@ -33,9 +34,10 @@ class QueryFactory {
 			}
 			$fields .= $item['name'];
 			
-			//This does a simple check to see if the input contains a sub query
+			//This does a simple check to see if the input contains a sub query or sql command
 			//If it does, do not surround with ''
-			if (strstr($item['value'],"(SELECT")) {
+			
+			if ($item['command'] == true) {
 				$values .= $item['value'];
 			}
 			else {
@@ -57,7 +59,14 @@ class QueryFactory {
 			//If more than one item exist
 			//Add delimiter "," for each iteam in query
 			if ($i>0) { $fields .= ","; }
-			$fields .= $item['name'] . " = '".$item['value']."'";			
+			//$fields .= $item['name'] . " = '".$item['value']."'";	
+			
+			if ($item['command'] == true) {
+				$fields .= $item['name'] . " = ".$item['value']." ";
+			}
+			else {
+				$fields .= $item['name'] . " = '".$item['value']."'";
+			}
 		}
 	
 		$query = "UPDATE " . $table . " SET " . $fields . " " . $where;

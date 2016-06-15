@@ -28,6 +28,13 @@ $loadMod = $sys_mods->get_Unassigned("Stores_ajax");
 		</td>
 		<td>
 			<form class="search_form" method="get" action="?">
+				<input type="hidden" name="<?=FORM_ACTION?>" value="<?=FORM_ACTION_SEARCH?>">
+				<input type="hidden" name="search" value="terminal_id">
+				<input type="text" name="value" placeholder="Terminal ID">
+			</form>
+		</td>
+		<td>
+			<form class="search_form" method="get" action="?">
 				<input type="hidden" name="<?=FORM_ACTION?>" value="<?=FORM_ACTION_CREATE?>">
 				<input type="submit" value="New"> 				
 			</form>

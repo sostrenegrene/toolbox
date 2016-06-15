@@ -8,16 +8,22 @@ define("SYS_HEADER_LOGIN_PASSWORD","sys_password");
 define("SYS_HEADER_LOGIN_TOKEN","sys_token");
 
 //System tables
-define("DB_TABLE_MENUS","toolbox_sys_menu");
-define("DB_TABLE_MODULES","toolbox_sys_modules");
-define("DB_TABLE_USERS","toolbox_sys_users");
-define("DB_TABLE_SETTINGS","toolbox_sys_settings");
+define("DB_SYS_MENUS","toolbox_sys_menu");
+define("DB_SYS_MODULES","toolbox_sys_modules");
+define("DB_SYS_USERS","toolbox_sys_users");
+define("DB_SYS_SETTINGS","toolbox_sys_settings");
+
+//Send mail
+define("MAIL_SENDER","Toolbox <noreply@posapi.grenes.dk>");
 
 //Module tables
-define("TABLE_GRENES_COUNTRIES","grenes_countries");
-define("TABLE_GRENES_FRANCHISERS","grenes_franchisers");
-define("TABLE_GRENES_STORES","grenes_stores");
-define("TABLE_GRENES_POS","grenes_pos");
+define("DB_GRENES_COUNTRIES","grenes_countries");
+define("DB_GRENES_FRANCHISERS","grenes_franchisers");
+define("DB_GRENES_STORES","grenes_stores");
+define("DB_GRENES_POS","grenes_pos");
+define("DB_GRENES_TIME_MANAGER","grenes_time_manager");
+define("DB_GRENES_TIME_ACTIVE","grenes_time_active");
+
 
 /** Form data
  */
@@ -40,8 +46,9 @@ define("FIRMAFON_CALLBACK_URL","http://beta.pos.grenes.dk/auth.php");
 /** POSMON
  * 
  */
+define("POSMON_TIMER_NOTIFY", (60 * 60) );
 define("POSMON_TIMER_WARNING", (1 * 60) );
 define("POSMON_TIMER_OFFLINE", (2 * 60) );
 //define("POSMON_TIMER_INACTIVE_TIMEOUT", (2880 * 60) );//2 Days
-define("POSMON_TIMER_INACTIVE_TIMEOUT", (3 * 60) );//2 Days
+define("POSMON_TIMER_INACTIVE_TIMEOUT", (3 * 60) );//3 minutes
 ?>

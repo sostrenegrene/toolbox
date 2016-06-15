@@ -18,7 +18,7 @@ class Users {
 	}
 	
 	private function is_User($username,$password) {
-		$query = "SELECT id,username,access_level,token FROM " . DB_TABLE_USERS . " WHERE username = '".$username."' AND password = '".$password."' OR token = '".$this->token."'";
+		$query = "SELECT id,username,access_level,token FROM " . DB_SYS_USERS . " WHERE username = '".$username."' AND password = '".$password."' OR token = '".$this->token."'";
 		$res = $this->db->query($query);
 		
 		if ($res != null) { 
@@ -42,7 +42,7 @@ class Users {
 	}
 	
 	private function set_Token($id,$token) {
-		$query = "UPDATE " . DB_TABLE_USERS . " SET token = '".$token."' WHERE id = '".$id."'";
+		$query = "UPDATE " . DB_SYS_USERS . " SET token = '".$token."' WHERE id = '".$id."'";
 		$this->db->query($query);
 		
 		$this->getset->setSession(SYS_HEADER_LOGIN_TOKEN,$token);
@@ -65,7 +65,7 @@ class Users {
 		
 		$qf = $this->db->query_factory();
 		$qf->set_InputFactory($input);
-		$this->db->query($qf->insert(DB_TABLE_USERS));
+		$this->db->query($qf->insert(DB_SYS_USERS));
 		
 		print $this->db->error(__FUNCTION__);
 	}
@@ -74,7 +74,7 @@ class Users {
 		
 		$qf = $this->db->query_factory();
 		$qf->set_InputFactory($input);
-		$this->db->query($qf->update(DB_TABLE_USERS, "id = '".$id."'"));
+		$this->db->query($qf->update(DB_SYS_USERS, "id = '".$id."'"));
 	
 		print $this->db->error(__FUNCTION__);
 	}
@@ -90,14 +90,14 @@ class Users {
 	}
 	
 	function delete_User($id) {
-		$query = "DELETE FROM " . DB_TABLE_USERS . " WHERE id = '".$id."'";
+		$query = "DELETE FROM " . DB_SYS_USERS . " WHERE id = '".$id."'";
 		$this->db->query($query);
 		
 		print $this->db->error(__FUNCTION__);
 	}
 	
 	function get_All() {
-		$query = "SELECT * FROM ".DB_TABLE_USERS;
+		$query = "SELECT * FROM ".DB_SYS_USERS;
 		$res = $this->db->query($query);
 		
 		return $res;

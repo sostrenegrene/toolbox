@@ -8,7 +8,7 @@ class Countries {
 	}
 	
 	function get_All() {
-		$query = "SELECT * FROM " . TABLE_GRENES_COUNTRIES;
+		$query = "SELECT * FROM " . DB_GRENES_COUNTRIES;
 		$res = $this->db->query($query);
 		
 		print $this->db->error(__FUNCTION__);
@@ -27,7 +27,7 @@ class Countries {
 	}
 	
 	function make_Country($country) {
-		$query = "INSERT INTO " . TABLE_GRENES_COUNTRIES . " (country) VALUES ('".$country."')";
+		$query = "INSERT INTO " . DB_GRENES_COUNTRIES . " (country) VALUES ('".$country."')";
 		$this->db->query($query);
 		
 		print $this->db->error(__FUNCTION__);

@@ -3,11 +3,10 @@ require_once 'Countries.class.php';
 require_once 'Franchisers.class.php';
 require_once 'Stores.class.php';
 require_once 'POS.class.php';
+require_once 'POSStatus.class.php';
 require_once 'DataStores/StoreData.class.php';
 require_once 'DataStores/FranchiserData.class.php';
 require_once 'DataStores/POSData.class.php';
-
-require_once 'MessageFactory.class.php';
 
 class StoresDataLoader {	
 		
@@ -25,10 +24,10 @@ class StoresDataLoader {
 		
 		$this->input = $db->input_factory();
 		
-		$this->franchisers = new Franchisers($db);
-		$this->stores = new Stores($db);
-		$this->pos = new POS($db);
-		$this->countries = new Countries($db);
+		$this->franchisers 	= new Franchisers($db);
+		$this->stores 		= new Stores($db);
+		$this->pos 			= new POS($db);
+		$this->countries 	= new Countries($db);
 	}
 	
 	function country_Select($id=null) {

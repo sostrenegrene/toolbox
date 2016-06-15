@@ -30,7 +30,7 @@ class ModulesAdmin {
 		$qf = $this->db->query_factory();
 		$qf->set_InputFactory($this->input);
 		
-		$query = $qf->insert( DB_TABLE_MODULES );
+		$query = $qf->insert( DB_SYS_MODULES );
 		
 		/*
 		$query_ = "INSERT INTO " . DB_TABLE_MODULES . " 
@@ -46,7 +46,7 @@ class ModulesAdmin {
 	}
 	
 	function delete_Module($id) {
-		$query = "DELETE FROM " . DB_TABLE_MODULES . " WHERE id = '".$id."'";
+		$query = "DELETE FROM " . DB_SYS_MODULES . " WHERE id = '".$id."'";
 		$this->db->query($query);
 		
 		print $this->db->error();

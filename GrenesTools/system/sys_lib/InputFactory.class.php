@@ -55,9 +55,10 @@ class InputFactory {
 		return $out;
 	}
 	
-	function add($name,$value) {
+	function add($name,$value,$cmd=false) {
 		$a['name'] = $name;
 		$a['value'] = $this->validate($value);
+		$a['command'] = $cmd;
 		
 		$this->input[] = $a;
 	}

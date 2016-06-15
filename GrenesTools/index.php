@@ -1,11 +1,15 @@
 <?php
 session_start();
 
+//Config
 require_once 'system/config/config.php';
+
+//Sys_lib
 require_once 'system/sys_lib/getset.php';
-
 require_once 'system/sys_lib/mssql.class.php';
+require_once 'system/sys_lib/time.class.php';
 
+//Includes
 require_once 'system/includes/system/Menus.class.php';
 require_once 'system/includes/system/Modules.class.php';
 require_once 'system/includes/system/Users.class.php';

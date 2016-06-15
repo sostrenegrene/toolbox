@@ -14,23 +14,23 @@ class Menus {
 	}
 	
 	private function fetch_Menus() {
-		$query = "SELECT * FROM " . DB_TABLE_MENUS . " WHERE sub_id = '0' AND level <= '".$this->level."'";
+		$query = "SELECT * FROM " . DB_SYS_MENUS . " WHERE sub_id = '0' AND level <= '".$this->level."'";
 		
 		return $this->db->query($query);		
 	}
 	
 	private function fetch_SubMenus($menu_id) {
-		$query = "SELECT * FROM " . DB_TABLE_MENUS . " WHERE sub_id = '".$menu_id."' AND level <= '".$this->level."'";
+		$query = "SELECT * FROM " . DB_SYS_MENUS . " WHERE sub_id = '".$menu_id."' AND level <= '".$this->level."'";
 		
 		return $this->db->query($query);
 	}
 	
 	function menuIdByName($name,$subForMenu=null){
-		if ($subForMenu != null) { $s = " AND sub_id = (SELECT id FROM " . DB_TABLE_MENUS . " WHERE name = '".$subForMenu."')"; }
+		if ($subForMenu != null) { $s = " AND sub_id = (SELECT id FROM " . DB_SYS_MENUS . " WHERE name = '".$subForMenu."')"; }
 		else { $s = ""; }
 		
 		//$query = "SELECT id FROM " . DB_TABLE_MENUS . " WHERE name = '".$name."'".$s;
-		$query = "SELECT id FROM " . DB_TABLE_MENUS . " WHERE name = '".$name."'".$s;
+		$query = "SELECT id FROM " . DB_SYS_MENUS . " WHERE name = '".$name."'".$s;
 		
 		$res = $this->db->query($query);		
 		

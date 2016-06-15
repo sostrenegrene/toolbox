@@ -81,9 +81,10 @@ class Stores {
 	 */
 	function get() {
 		
-		$query = "SELECT s.*,c.country,f.franchiser FROM " . TABLE_GRENES_STORES . " AS s
-				JOIN ".TABLE_GRENES_COUNTRIES." AS c ON c.id = s.country_id
-				JOIN ".TABLE_GRENES_FRANCHISERS." AS f ON f.id = s.franchiser_id".$this->get_search()." ORDER BY store_id DESC";
+		$query = "SELECT s.*,c.country,f.franchiser FROM " . DB_GRENES_STORES . " AS s
+				JOIN ".DB_GRENES_COUNTRIES." AS c ON c.id = s.country_id				
+				JOIN ".DB_GRENES_FRANCHISERS." AS f ON f.id = s.franchiser_id
+				".$this->get_search()." ORDER BY s.store_id DESC";
 		
 		$res = $this->db->query($query);
 		
@@ -133,13 +134,13 @@ class Stores {
 	 *
 	 */
 	function delete_Store($id) {
-		$query = "DELETE FROM " . TABLE_GRENES_STORES . " WHERE id = '".$id."'";
+		$query = "DELETE FROM " . DB_GRENES_STORES . " WHERE id = '".$id."'";
 		$this->db->query($query);
 		print $this->db->error();
 	}
 	
 	function delete_POS($id) {
-		$query = "DELETE FROM " . TABLE_GRENES_POS . " WHERE id = '".$id."'";
+		$query = "DELETE FROM " . DB_GRENES_POS . " WHERE id = '".$id."'";
 		$this->db->query($query);
 	
 		print $this->db->error(__FUNCTION__);
@@ -150,7 +151,7 @@ class Stores {
 	
 		$qf = $this->db->query_factory();
 		$qf->set_InputFactory($this->input);
-		$query = $qf->insert( TABLE_GRENES_STORES );
+		$query = $qf->insert( DB_GRENES_STORES );
 			
 		//print $query;
 		//Exec query
@@ -166,7 +167,7 @@ class Stores {
 		$qf->set_InputFactory($this->input);
 	
 		$where = "id = '".$id."'";
-		$query = $qf->update( TABLE_GRENES_STORES,$where );
+		$query = $qf->update( DB_GRENES_STORES,$where );
 	
 		//print $query;
 	

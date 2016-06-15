@@ -17,7 +17,7 @@ class Settings {
 	}
 	
 	private function fetch_All() {
-		$query = "SELECT * FROM " . DB_TABLE_SETTINGS . " ORDER BY group_name";
+		$query = "SELECT * FROM " . DB_SYS_SETTINGS . " ORDER BY group_name";
 		$res = $this->db->query($query);
 		
 		print $this->db->error();
@@ -26,7 +26,7 @@ class Settings {
 	}
 	
 	private function fetch_Group($group) {
-		$query = "SELECT * FROM " . DB_TABLE_SETTINGS . " WHERE group_name = '".$group."' ORDER BY group_name";
+		$query = "SELECT * FROM " . DB_SYS_SETTINGS . " WHERE group_name = '".$group."' ORDER BY group_name";
 		$res = $this->db->query($query);
 	
 		print $this->db->error();
@@ -55,7 +55,7 @@ class Settings {
 		
 		$qf = $this->db->query_factory();
 		$qf->set_InputFactory($this->input);
-		$this->db->query( $qf->insert( DB_TABLE_SETTINGS ) );
+		$this->db->query( $qf->insert( DB_SYS_SETTINGS ) );
 		
 		print $this->db->error();
 		
@@ -66,7 +66,7 @@ class Settings {
 	
 		$qf = $this->db->query_factory();
 		$qf->set_InputFactory($this->input);
-		$this->db->query( $qf->update( DB_TABLE_SETTINGS,"id = '".$id."'" ) );
+		$this->db->query( $qf->update( DB_SYS_SETTINGS,"id = '".$id."'" ) );
 	
 		print $this->db->error();
 		
@@ -89,7 +89,7 @@ class Settings {
 	}
 	
 	function delete($id) {
-		$query = "DELETE FROM " . DB_TABLE_SETTINGS . " WHERE id = '".$id."'";
+		$query = "DELETE FROM " . DB_SYS_SETTINGS . " WHERE id = '".$id."'";
 		$this->db->query($query);
 		
 		print $this->db->error();

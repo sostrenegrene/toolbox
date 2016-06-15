@@ -22,7 +22,7 @@ class MenuAdmin {
 		$qf = $this->db->query_factory();
 		$qf->set_InputFactory($this->input);
 		
-		$query = $qf->insert( DB_TABLE_MENUS );
+		$query = $qf->insert( DB_SYS_MENUS );
 		$this->db->query($query);
 	
 		print $this->db->error();
@@ -32,7 +32,7 @@ class MenuAdmin {
 		$qf = $this->db->query_factory();
 		$qf->set_InputFactory($this->input);
 		$where = "id = '".$id."'";
-		$query = $qf->update( DB_TABLE_MENUS,$where );
+		$query = $qf->update( DB_SYS_MENUS,$where );
 		
 		$this->db->query($query);
 	
@@ -40,7 +40,7 @@ class MenuAdmin {
 	}
 	
 	function delete($id) {
-		$query = "DELETE FROM " . DB_TABLE_MENUS . " WHERE id = '".$id."'";
+		$query = "DELETE FROM " . DB_SYS_MENUS . " WHERE id = '".$id."'";
 		$this->db->query($query);
 		
 		print $this->db->error();

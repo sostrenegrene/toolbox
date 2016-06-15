@@ -44,8 +44,7 @@ class POS_API {
 	 */
 	private function update_OnlineState() {
 		
-		//$query = "UPDATE " . TABLE_GRENES_POS . " SET pos_online = GETDATE() WHERE store_id = '".$this->store_id."' AND pos_num = '".$this->pos_num."'";
-		$query = "UPDATE " . TABLE_GRENES_POS . " SET pos_online = GETDATE() WHERE store_id = (SELECT id FROM ".TABLE_GRENES_STORES." WHERE store_id = '".$this->store_id."') AND pos_num = '".$this->pos_num."'";
+		$query = "UPDATE " . DB_GRENES_POS . " SET pos_online = GETDATE() WHERE store_id = (SELECT id FROM ".DB_GRENES_STORES." WHERE store_id = '".$this->store_id."') AND pos_num = '".$this->pos_num."'";
 		$this->db->query($query);
 		//print $query;
 		//print $this->db->error( __FUNCTION__ );

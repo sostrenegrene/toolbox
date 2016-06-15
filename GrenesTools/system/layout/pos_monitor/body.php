@@ -1,3 +1,7 @@
+<div class="posmon-timer">
+	<div id="updateTimer"></div>
+</div>
+
 <?php 
 $modules = $sys_mods->modules();
 $mList = array();
@@ -15,14 +19,12 @@ if ($modules != null) {
 	</div>
 	
 <script type="text/javascript">
-cload.headers("load=<?=$modItem['id']?>");
-cload.toID("mbody<?=$modItem['id']?>");
+CLConfig.file = "ajax.php";
+CLConfig.load = "load=<?=$modItem['id']?>";
+CLConfig.bodyID = "#mbody<?=$modItem['id']?>";
+CLConfig.timerBody = "#updateTimer";
+CLConfig.reloadTimer = 30;
 
-cload.reload(function() {
-	cload.load();
-	cload.loadTimer( 30 );	
-},30);
+cload.get();
 </script>
 <?php } }//ENd foreach / if ?>
-
-<div id="updateTimer">UT</div>

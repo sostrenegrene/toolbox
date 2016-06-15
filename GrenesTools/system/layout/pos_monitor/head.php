@@ -9,16 +9,18 @@
 
 <link rel="stylesheet" type="text/css" href="system/layout/styles/main_style.css">
 <link rel="stylesheet" type="text/css" href="system/layout/styles/menu.css">
+<link rel="stylesheet" type="text/css" href="system/layout/styles/posmon.css">
 
-<link rel="stylesheet" type="text/css" href="system/layout/styles/CRM.css">
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
 <script type="text/javascript" src="system/javascript/pos_monitor.js"></script>
 <script type="text/javascript" src="system/javascript/ViewLoader.js"></script>
+<script type="text/javascript" src="system/javascript/ContentLoader.js"></script>
 <script type="text/javascript" src="system/javascript/AJAXResult.js"></script>
+<script type="text/javascript" src="system/javascript/Math.js"></script>
 
 <script type="text/javascript">
-var cload  = new ContentLoader("ajax.php");
+var cload  = new ContentLoader();
 var ajaxr = new AJAXResult();
 
 $(document).ready(function() {});

@@ -35,7 +35,7 @@ class SendMail {
 			$to .= $r['name']."<".$r['email'].">";
 		}
 		$this->headers .= "To: " . $to . "\r\n";
-		$this->headers .= "From: Toolbox <soren.pedersen@sostrenegrene.com>\r\n";
+		$this->headers .= "From: ".MAIL_SENDER."\r\n";
 		
 		mail($to,$this->subject,$this->message,$this->headers);		
 	}

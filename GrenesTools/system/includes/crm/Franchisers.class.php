@@ -62,7 +62,7 @@ class Franchisers {
 	}
 	
 	function get() {
-		$query = "SELECT * FROM " . TABLE_GRENES_FRANCHISERS . $this->get_Search() ." ORDER BY franchiser";
+		$query = "SELECT * FROM " . DB_GRENES_FRANCHISERS . $this->get_Search() ." ORDER BY franchiser";
 		$res = $this->db->query($query);
 
 		print $this->db->error(__FUNCTION__);
@@ -82,7 +82,7 @@ class Franchisers {
 		$qf->add("phone_number",$values['phone_number']);
 		$qf->add("country_id",$values['country_id']);
 		
-		$query = $qf->insert( TABLE_GRENES_FRANCHISERS );
+		$query = $qf->insert( DB_GRENES_FRANCHISERS );
 		
 		$this->db->query($query);
 		print $this->db->error();
@@ -101,7 +101,7 @@ class Franchisers {
 		$qf->add("country_id",$values['country_id']);
 		
 		$where = "id = '".$id."'";
-		$query = $qf->update( TABLE_GRENES_FRANCHISERS,$where );
+		$query = $qf->update( DB_GRENES_FRANCHISERS,$where );
 		
 		$this->db->query($query);
 		print $this->db->error();
@@ -125,7 +125,7 @@ class Franchisers {
 	 * @param int $id
 	 */
 	function delete_Franchiser($id) {
-		$query = "DELETE FROM " . TABLE_GRENES_FRANCHISERS . " WHERE id = '".$id."'";
+		$query = "DELETE FROM " . DB_GRENES_FRANCHISERS . " WHERE id = '".$id."'";
 		$this->db->query($query);
 		print $this->db->error();
 	}
